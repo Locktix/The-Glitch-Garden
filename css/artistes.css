@@ -63,11 +63,12 @@
 
 /* Galerie d'artistes */
 .artists-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
     padding: 2rem 0;
     margin: 2rem 0;
+    justify-content: flex-start;
 }
 
 /* Carte artiste */
@@ -77,6 +78,10 @@
     overflow: hidden;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
+    flex: 1 1 280px;
+    min-width: 250px;
+    max-width: 350px;
+    display: flex;
 }
 
 .artist-card:hover {
@@ -87,7 +92,10 @@
 .artist-link {
     text-decoration: none;
     color: inherit;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
 }
 
 /* Conteneur image artiste */
@@ -142,6 +150,10 @@
 /* Infos artiste */
 .artist-info {
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
 }
 
 .artist-name {
@@ -197,8 +209,7 @@
 /* Responsive design */
 @media (max-width: 1024px) {
     .artists-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 1.5rem;
+        flex-wrap: wrap;
     }
 }
 
@@ -212,8 +223,13 @@
     }
 
     .artists-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        flex-direction: column;
         gap: 1rem;
+    }
+
+    .artist-card {
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 
     .artist-image-container {
@@ -231,7 +247,11 @@
 
 @media (max-width: 480px) {
     .artists-gallery {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .artist-card {
+        flex: 1 1 100%;
     }
 
     .artists-header {
