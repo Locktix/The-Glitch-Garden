@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/inscription.css">
+    <title>The Glitch Garden - Inscription</title>
+</head>
+<body>
+    <header>
+        <div class="centrage header-content">
+            <a href="index.html"><img src="img/logo.png" alt="Logo The Glitch Garden"></a>
+            <a id="site-title" href="index.html">The Glitch Garden</a>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="prestations.html">Prestations</a></li>
+                    <li><a href="artistes.html">Artistes</a></li>
+                </ul>
+                
+                <ul>
+                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="inscription.html" id="current">S'inscrire</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="centrage">
+        <section class="register-section">
+            <h2>Inscription</h2>
+            <form action="#" method="post" class="register-form">
+                <label for="lastname">Nom :</label>
+                <input type="text" id="lastname" name="lastname" required>
+
+                <label for="firstname">Prénom :</label>
+                <input type="text" id="firstname" name="firstname" required>
+
+                <label for="artistname">Nom d'artiste :</label>
+                <input type="text" id="artistname" name="artistname" required>
+
+                <label for="photo">Photo (URL ou Fichier) :</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+
+                <label for="bio">Description / Biographie :</label>
+                <textarea id="bio" name="bio" rows="4" required></textarea>
+
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm_password">Confirmation du mot de passe :</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+
+                <button type="submit">S'inscrire</button>
+            </form>
+    </main>
+
+    <footer>
+        <div class="centrage">
+            <p>&copy; 2025 The Glitch Garden</p>
+        </div>
+    </footer>
+
+</body>
+</html>

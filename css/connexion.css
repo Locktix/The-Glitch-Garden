@@ -1,0 +1,86 @@
+.login-section {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px; /* Limiter la largeur pour un aspect plus propre */
+    margin: 50px auto;
+    padding: 30px; /* Plus d'espace intérieur */
+    
+    /* Couleur de fond blanc/gris très clair, pour contraster avec le body (#F5F5F5) */
+    background-color: #FFFFFF; 
+    border: none; /* Supprime la bordure simple */
+    border-radius: 8px; /* Coins plus arrondis */
+    
+    /* Ombre subtile et élégante */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.05); 
+}
+
+.login-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    /* Couleur d'accentuation bleu/cyan */
+    color: #0F2027; 
+    border-bottom: 2px solid #4A90E2; /* Ligne de séparation élégante */
+    padding-bottom: 10px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    margin-bottom: 8px; 
+    font-weight: bold;
+    color: #333333;
+}
+
+.login-form input {
+    padding: 12px; /* Plus de padding pour des champs plus hauts */
+    margin-bottom: 20px;
+    border: 1px solid #DDDDDD; /* Bordure très claire */
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-form input:focus {
+    /* Utilisation de la couleur d'accentuation bleu/cyan pour le focus */
+    border-color: #4A90E2; 
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); /* Ombre douce et cohérente */
+}
+
+.login-form #forgot-password {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #C55D9D; /* Utilisation de l'accent magenta doux */
+    text-decoration: none;
+    align-self: flex-start;
+    transition: color 0.3s;
+}
+
+.login-form #forgot-password:hover {
+    color: #0F2027; /* Devient plus foncé au survol */
+    text-decoration: underline;
+}
+
+.login-form button {
+    padding: 12px;
+    /* Couleur de fond du header (bleu foncé) pour le bouton principal */
+    background-color: #0F2027; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem; /* Bouton légèrement plus grand */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.login-form button:hover {
+    background-color: #4A90E2; /* Passe au bleu/cyan au survol */
+}
+
+.login-form button:active {
+    transform: translateY(1px);
+}
