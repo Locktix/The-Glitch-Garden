@@ -1,0 +1,244 @@
+/* Styles pour la page Artistes */
+
+/* En-tête de la page */
+.artists-header {
+    padding: 3rem 1.5rem;
+    margin: 2rem 0;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(197, 93, 157, 0.1) 100%);
+    border-left: 4px solid #4A90E2;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0F2027;
+    margin: 0 0 1rem 0;
+    background: linear-gradient(90deg, #4A90E2, #C55D9D);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: #666666;
+    margin: 0;
+}
+
+/* Section Filtre */
+.filter-section {
+    padding: 1.5rem;
+    margin: 2rem 0;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: #0F2027;
+    gap: 0.75rem;
+}
+
+.filter-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #4A90E2;
+}
+
+.filter-checkbox:hover {
+    accent-color: #C55D9D;
+}
+
+/* Galerie d'artistes */
+.artists-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+    margin: 2rem 0;
+}
+
+/* Carte artiste */
+.artist-card {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.artist-card:hover {
+    box-shadow: 0 8px 24px rgba(74, 144, 226, 0.15);
+    transform: translateY(-4px);
+}
+
+.artist-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Conteneur image artiste */
+.artist-image-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #4A90E2, #C55D9D);
+}
+
+.artist-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.artist-card:hover .artist-image {
+    transform: scale(1.05);
+}
+
+.artist-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 32, 39, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.artist-card:hover .artist-overlay {
+    opacity: 1;
+}
+
+.view-profile {
+    background: linear-gradient(90deg, #4A90E2, #C55D9D);
+    color: #FFFFFF;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Infos artiste */
+.artist-info {
+    padding: 1.5rem;
+}
+
+.artist-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #0F2027;
+    margin: 0 0 1rem 0;
+}
+
+.artist-description {
+    font-size: 0.9rem;
+    color: #666666;
+    margin: 0 0 1rem 0;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.artist-performances {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.performance-tag {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(74, 144, 226, 0.15), rgba(197, 93, 157, 0.15));
+    color: #0F2027;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-left: 3px solid #4A90E2;
+}
+
+.performance-tag:nth-child(2) {
+    border-left-color: #C55D9D;
+}
+
+.performance-tag:nth-child(3) {
+    border-left-color: #4A90E2;
+}
+
+/* Artiste sans performance programmée */
+.artist-info:has(.artist-performances:empty)::after {
+    content: "Non programmé";
+    display: block;
+    color: #999999;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .artists-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+    }
+
+    .artists-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .artist-image-container {
+        height: 200px;
+    }
+
+    .artist-info {
+        padding: 1rem;
+    }
+
+    .artist-name {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .artists-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .artists-header {
+        padding: 2rem 1rem;
+    }
+
+    .filter-section {
+        padding: 1rem;
+    }
+}
