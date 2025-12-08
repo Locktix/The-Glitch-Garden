@@ -1,25 +1,20 @@
 .login-section {
     display: flex;
     flex-direction: column;
-    max-width: 400px; /* Limiter la largeur pour un aspect plus propre */
+    max-width: 400px;
     margin: 50px auto;
-    padding: 30px; /* Plus d'espace intérieur */
-    
-    /* Couleur de fond blanc/gris très clair, pour contraster avec le body (#F5F5F5) */
+    padding: 30px;
     background-color: #FFFFFF; 
-    border: none; /* Supprime la bordure simple */
-    border-radius: 8px; /* Coins plus arrondis */
-    
-    /* Ombre subtile et élégante */
+    border: none;
+    border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.05); 
 }
 
 .login-section h2 {
     text-align: center;
     margin-bottom: 25px;
-    /* Couleur d'accentuation bleu/cyan */
     color: #0F2027; 
-    border-bottom: 2px solid #4A90E2; /* Ligne de séparation élégante */
+    border-bottom: 2px solid #4A90E2;
     padding-bottom: 10px;
 }
 
@@ -34,51 +29,82 @@
     color: #333333;
 }
 
+.password-container {
+    position: relative; 
+    margin-bottom: 20px; 
+}
+
 .login-form input {
-    padding: 12px; /* Plus de padding pour des champs plus hauts */
+    padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #DDDDDD; /* Bordure très claire */
+    border: 1px solid #DDDDDD;
     border-radius: 5px;
     font-size: 1rem;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+.password-container input {
+    width: 100%; 
+    padding: 12px;
+    padding-right: 40px;
+    margin-bottom: 0;
+    box-sizing: border-box; 
+}
+
 .login-form input:focus {
-    /* Utilisation de la couleur d'accentuation bleu/cyan pour le focus */
     border-color: #4A90E2; 
     outline: none;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); /* Ombre douce et cohérente */
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* Style du bouton toggle (l'oeil) */
+#togglePassword {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    color: #4A90E2;
+    font-size: 1rem;
+    line-height: 1; 
+    transition: color 0.3s;
+}
+
+#togglePassword:hover {
+    color: #C55D9D;
 }
 
 .login-form #forgot-password {
     margin-bottom: 20px;
     font-size: 0.9rem;
-    color: #C55D9D; /* Utilisation de l'accent magenta doux */
+    color: #C55D9D;
     text-decoration: none;
     align-self: flex-start;
     transition: color 0.3s;
 }
 
 .login-form #forgot-password:hover {
-    color: #0F2027; /* Devient plus foncé au survol */
+    color: #4A90E2;
     text-decoration: underline;
 }
 
 .login-form button {
     padding: 12px;
-    /* Couleur de fond du header (bleu foncé) pour le bouton principal */
     background-color: #0F2027; 
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 1.1rem; /* Bouton légèrement plus grand */
+    font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s;
 }
 
 .login-form button:hover {
-    background-color: #4A90E2; /* Passe au bleu/cyan au survol */
+    background-color: #4A90E2;
 }
 
 .login-form button:active {

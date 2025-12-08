@@ -5,162 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/artistes.css">
-    <title>The Glitch Garden - Programme de la Journée</title>
+    <link rel="stylesheet" href="css/artistes.css"> 
+    <title>The Glitch Garden - Artistes</title>
 </head>
 <body>
-
-<header>
-    <div class="centrage header-content">
-        <a href="index.html"><img src="img/logo.png" alt="Logo The Glitch Garden"></a>
-        <a id="site-title" href="index.html">The Glitch Garden</a>
-        <nav>
-            <ul class="main-nav">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="prestations.html">Prestations</a></li>
-                <li><a href="artistes.html" id="current">Artistes</a></li>
-            </ul>
-            
-            <ul>
-                <li><a href="connexion.html">Connexion</a></li>
-                <li><a href="inscription.html">S'inscrire</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    <header>
+        <div class="centrage header-content">
+            <a href="index.html"><img src="img/logo.png" alt="Logo The Glitch Garden"></a>
+            <a id="site-title" href="index.html">The Glitch Garden</a>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="prestations.html">Prestations</a></li>
+                    <li><a href="artistes.html" id="current">Artistes</a></li>
+                </ul>
+                <ul>
+                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="inscription.html">S'inscrire</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <main class="centrage">
-        <section class="artists-header">
-            <h1 class="page-title">Nos Artistes</h1>
-            <p class="page-subtitle">Découvrez les talents qui animent The Glitch Garden</p>
-        </section>
+        
+        <a href="index.html" class="back-link">&larr; Retour à l'accueil</a>
 
-        <section class="filter-section">
-            <form class="filter-form">
-                <label class="filter-label">
-                    <input type="checkbox" id="filter-scheduled" class="filter-checkbox">
-                    <span>Afficher uniquement les artistes programmés</span>
-                </label>
-            </form>
-        </section>
+        <h1 class="page-title">Artistes Programmés au Glitch Garden</h1>
+        <p class="page-description">Découvrez les profils complets des DJ et producteurs présents lors de cette édition.</p>
 
-        <section class="artists-gallery">
-            <!-- Artiste 1 -->
-            <article class="artist-card">
-                <a href="/artiste-profile-nexus.html" class="artist-link">
-                    <div class="artist-image-container">
-                        <img src="img/artistes/nexus.jpg" alt="NEXUS" class="artist-image">
-                        <div class="artist-overlay">
-                            <span class="view-profile">Voir le profil</span>
-                        </div>
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">NEXUS</h3>
-                        <p class="artist-description">Producteur Techno | Électronique Expérimentale</p>
-                        <div class="artist-performances">
-                            <span class="performance-tag">14h - Scène Principale</span>
-                            <span class="performance-tag">17h - Temple Techno</span>
-                        </div>
-                    </div>
-                </a>
+        <fieldset class="filter-container">
+            <legend class="visually-hidden-flex">Options de filtrage</legend> 
+            <input type="checkbox" id="filter-toggle" name="filter-programmed">
+            <label for="filter-toggle" class="filter-label">Afficher uniquement les artistes programmés</label>
+        </fieldset>
+        
+        <section class="artistes-list">
+            <article class="artiste-card">
+                <img src="img/artistes/cyber_pulse.jpg" alt="cyber_pulse Artiste">
+                <h2>Cyber pulse</h2>
+                <span class="artiste-description">Maître des rythmes intenses et futuristes. Il propulse les foules dans un univers cyberpunk grâce à son mélange puissant d'Electro House et de Future Rave.</span>
+                <div class="styles-tags">
+                    <span class="style-tag">Electro House</span>
+                    <span class="style-tag">Future Rave</span>
+                </div>
+                
+                <h3>Programmation</h3>
+                <ul class="programmed-dates">
+                    <li>22h00 - scène principale</li>
+                    <li>01h00 - scène principale</li>
+                </ul>
             </article>
-
-            <!-- Artiste 2 -->
-            <article class="artist-card">
-                <a href="/artiste-profile-luna.html" class="artist-link">
-                    <div class="artist-image-container">
-                        <img src="img/artistes/luna_sync.jpg" alt="LUNA SYNC" class="artist-image">
-                        <div class="artist-overlay">
-                            <span class="view-profile">Voir le profil</span>
-                        </div>
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">LUNA SYNC</h3>
-                        <p class="artist-description">DJ Ambient | Mélodies Cosmiques</p>
-                        <div class="artist-performances">
-                            <span class="performance-tag">11h - Jardin Chillout</span>
-                        </div>
-                    </div>
-                </a>
+            
+            <article class="artiste-card">
+                <img src="img/artistes/deep_harmony.jpg" alt="deep_harmony Artiste">
+                <h2>Deep harmony</h2>
+                <span class="artiste-description">Un voyage sonore introspectif. Cet artiste tisse des nappes harmoniques et des lignes de basse organiques, créant une ambiance planante entre Deep House et Melodic Techno.</span>
+                <div class="styles-tags">
+                    <span class="style-tag">Deep House</span>
+                    <span class="style-tag">Melodic Techno</span>
+                </div>
+                
+                <h3>Programmation</h3>
+                <ul class="programmed-dates">
+                    <li>23h30 - Temple Techno</li>
+                    <li>02h30 - Temple Techno</li>
+                </ul>
             </article>
-
-            <!-- Artiste 3 -->
-            <article class="artist-card">
-                <a href="#artist-profile-3" class="artist-link">
-                    <div class="artist-image-container">
-                        <img src="img/artistes/cyber_pulse.jpg" alt="CYBER PULSE" class="artist-image">
-                        <div class="artist-overlay">
-                            <span class="view-profile">Voir le profil</span>
-                        </div>
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">CYBER PULSE</h3>
-                        <p class="artist-description">Drum & Bass | Energie Brute</p>
-                        <div class="artist-performances">
-                            <span class="performance-tag">13h - Scène Principale</span>
-                        </div>
-                    </div>
-                </a>
+            
+            <article class="artiste-card">
+                <img src="img/artistes/glitch_master.jpg" alt="glitch_master Artiste">
+                <h2>Glitch master</h2>
+                <span class="artiste-description">L'art de la déconstruction sonore. Utilisant des glitches, des rythmes brisés et des textures expérimentales, il sculpte une IDM complexe et des beats imprévisibles de Glitch Hop.</span>
+                <div class="styles-tags">
+                    <span class="style-tag">IDM</span>
+                    <span class="style-tag">Glitch Hop</span>
+                </div>
+                
+                <h3>Programmation</h3>
+                <ul class="programmed-dates">
+                    <li>20h00 - Jardin Chillout</li>
+                    <li>00h30 - Jardin Chillout</li>
+                </ul>
             </article>
-
-            <!-- Artiste 4 -->
-            <article class="artist-card">
-                <a href="#artist-profile-4" class="artist-link">
-                    <div class="artist-image-container">
-                        <img src="img/artistes/glitch_master.jpg" alt="GLITCH MASTER" class="artist-image">
-                        <div class="artist-overlay">
-                            <span class="view-profile">Voir le profil</span>
-                        </div>
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">GLITCH MASTER</h3>
-                        <p class="artist-description">Artiste Acid | Effets Numériques</p>
-                        <div class="artist-performances">
-                            <span class="performance-tag">10h - Temple Techno</span>
-                            <span class="performance-tag">19h - Scène Principale</span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-
-            <!-- Artiste 5 -->
-            <article class="artist-card">
-                <a href="#artist-profile-5" class="artist-link">
-                    <div class="artist-image-container">
-                        <img src="img/artistes/wave_motion.svg" alt="WAVE MOTION" class="artist-image">
-                        <div class="artist-overlay">
-                            <span class="view-profile">Voir le profil</span>
-                        </div>
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">WAVE MOTION</h3>
-                        <p class="artist-description">Synthwave | Paysages Sonores</p>
-                        <div class="artist-performances">
-                        </div>
-                    </div>
-                </a>
-            </article>
-
-            <!-- Artiste 6 -->
-            <article class="artist-card">
-                <a href="#artist-profile-6" class="artist-link">
-                    <div class="artist-image-container">
-                        <img src="img/artistes/deep_harmony.jpg" alt="DEEP HARMONY" class="artist-image">
-                        <div class="artist-overlay">
-                            <span class="view-profile">Voir le profil</span>
-                        </div>
-                    </div>
-                    <div class="artist-info">
-                        <h3 class="artist-name">DEEP HARMONY</h3>
-                        <p class="artist-description">Deep House | Vibes Relaxantes</p>
-                        <div class="artist-performances">
-                            <span class="performance-tag">15h - Jardin Chillout</span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-        </section>
+            
+            </section>
 
     </main>
 
@@ -169,6 +99,5 @@
             <p>&copy; 2025 The Glitch Garden</p>
         </div>
     </footer>
-
 </body>
 </html>

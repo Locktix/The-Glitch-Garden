@@ -65,6 +65,12 @@ header img {
     height: 50px;
     margin-right: 15px;
 }
+/* cibler l'image en particulier ou toutes les images si c'est un style général */
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
 
 header nav {
     flex-grow: 1;
