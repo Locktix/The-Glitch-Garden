@@ -71,6 +71,7 @@ main {
     display: flex; 
     flex-wrap: wrap; 
     padding-top: 1rem;
+    padding-bottom: 2rem;
     gap: 2rem;
     justify-content: center; 
 }
@@ -112,6 +113,10 @@ main {
     color: #333333;
     line-height: 1.4;
     min-height: 55px;
+}
+
+.artiste-card-link {
+    text-decoration: none;
 }
 
 /* --- Tags de Style --- */
