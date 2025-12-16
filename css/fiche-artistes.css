@@ -1,0 +1,149 @@
+/* =============================
+   Styles de la Fiche Artist
+   ============================= */
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+/* Titre principal de la page */
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0F2027;
+    margin: 0px;
+    border-bottom: 4px solid #4A90E2;
+    padding-bottom: 0.5rem;
+
+}
+
+/* --- Section Entête (Photo + Infos clés) --- */
+
+.artist-profile-header {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+    align-items: flex-start;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed #ddd;
+}
+
+.artist-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #C55D9D;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+}
+
+.artist-presentation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.artist-real-name {
+    font-style: italic;
+    color: #666666;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.artist-presentation h4 {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    color: #0F2027;
+}
+
+/* NOTE : .styles-tags et .style-tag proviennent de artistes.css */
+
+
+/* --- Section Biographie --- */
+
+.artist-bio-section {
+    border: 1px solid rgba(74, 144, 226, 0.2); 
+    border-left: 5px solid #4A90E2;
+    padding: 1.5rem;
+    border-radius: 6px;
+    background-color: rgba(74, 144, 226, 0.03);
+}
+
+.artist-bio-section h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    color: #0F2027;
+}
+
+.artist-bio {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* --- Section Programmation --- */
+
+.artiste-programmation h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #0F2027;
+}
+
+.programmation-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.programmation-detail-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding: 0;
+    width: 270px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+}
+
+.programmation-detail-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+    border-color: #C55D9D;
+}
+
+.programmation-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.programmation-detail-card h4 {
+    font-size: 1.2rem;
+    color: #C55D9D;
+    margin: 0 1rem 0.8rem 1rem;
+    border-bottom: 2px solid #EEEEEE;
+    padding-bottom: 0.5rem;
+}
+
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    padding: 0 1rem 1rem 1rem;
+}
+
+.detail-info span {
+    font-weight: 600;
+}
+
+.prestation-card-link {
+    text-decoration: none;
+}
