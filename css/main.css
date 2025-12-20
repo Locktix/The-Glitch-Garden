@@ -1,43 +1,35 @@
-/* CSS Global, header, footer, navigation */
-
 * { box-sizing: border-box; }
 
 body {
-    /* Fond lumineux pour la subtilité */
     background-color: #F5F5F5;
-    color: #333333; /* Texte foncé pour la lisibilité */
+    color: #333333;
     font-family: Arial, sans-serif;
     font-size: 1rem;
     margin: 0;
     min-height: 100vh;
 }
 
-/* Conteneur de centrage */
 .centrage {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* 🎨 Style Subtil : Couleurs profondes et bordures fines */
 header {
     background-color: #0F2027; 
     padding: 1rem;
-    color: #E8F0F2; /* Texte très clair */
+    color: #E8F0F2;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    border-top: 4px solid #4A90E2; /* Bande subtile de couleur cyan/bleu */
+    border-top: 4px solid #4A90E2;
 }
 
-/* On change la bordure du footer pour le distinguer */
 footer {
     background-color: #0F2027; 
     padding: 1rem;
-    color: #E8F0F2; /* Texte très clair */
-    border-top: 4px solid #C55D9D; /* Bande subtile de couleur magenta doux */
+    color: #E8F0F2;
+    border-top: 4px solid #C55D9D;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
-
-/* Contenu du header (pour le logo, titre et navigation) */
 .header-content {
     display: flex;
     align-items: center;
@@ -45,7 +37,6 @@ footer {
     justify-content: center;
 }
 
-/* Titre du site */
 header #site-title {
     font-size: 1.8rem;
     font-weight: bold;
@@ -65,7 +56,7 @@ header img {
     height: 50px;
     margin-right: 15px;
 }
-/* cibler l'image en particulier ou toutes les images si c'est un style général */
+
 img {
     -webkit-user-drag: none;
     user-select: none;
@@ -87,7 +78,6 @@ header nav ul {
     padding: 0;
 }
 
-/* Centrage relatif de la navigation principale */
 header .main-nav {
     margin-left: auto;
     margin-right: auto;

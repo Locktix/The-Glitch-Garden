@@ -5,35 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/contact.css"> 
     <title>The Glitch Garden - Contact</title>
 </head>
 <body>
-
-<header>
-    <div class="centrage header-content">
-        <a href="index.html"><img src="img/logo.png" alt="Logo The Glitch Garden"></a>
-        <a id="site-title" href="index.html">The Glitch Garden</a>
-        <nav>
-            <ul class="main-nav">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="contact.html" id="current">Contact</a></li>
-                <li><a href="prestations.html">Prestations</a></li>
-                <li><a href="artistes.html">Artistes</a></li>
-            </ul>
-            
-            <ul>
-                <li><a href="connexion.html">Connexion</a></li>
-                <li><a href="inscription.html">S'inscrire</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    <header>
+        <div class="centrage header-content">
+            <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+            <a id="site-title" href="index.html">The Glitch Garden</a>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="contact.html" id="current">Contact</a></li>
+                    <li><a href="prestations.html">Prestations</a></li>
+                    <li><a href="artistes.html">Artistes</a></li>
+                </ul>
+                <ul>
+                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="inscription.html">S'inscrire</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <main class="centrage">
+        <a href="index.html" class="back-link">&larr; Retour à l'accueil</a>
 
-    <img src="img/under_construction.webp" alt="Page en construction">
-    <p style="text-align: center;">⚠️ <b>Rien n'est encore affiché ici.</b> Veuillez revenir plus tard !</p>
+        <h1 class="page-title">Contacter l'organisateur</h1>
+        <p class="page-description">Une question sur le festival ? Remplissez le formulaire ci-dessous. Une copie du message vous sera envoyée.</p>
 
+        <section class="contact-container">
+            <form action="send_contact.php" method="POST" class="contact-form">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nom">Votre nom *</label>
+                        <input type="text" id="nom" name="nom" required placeholder="Ex: Jean Dupont">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Votre adresse e-mail *</label>
+                        <input type="email" id="email" name="email" required placeholder="nom@exemple.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sujet">Sujet *</label>
+                    <input type="text" id="sujet" name="sujet" required placeholder="Objet de votre demande">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="4" required placeholder="Comment pouvons-nous vous aider ?"></textarea>
+                </div>
+
+                <p class="form-note">* Champs obligatoires</p>
+
+                <button type="submit" class="btn-submit">Envoyer le message</button>
+            </form>
+        </section>
     </main>
 
     <footer>
@@ -41,6 +71,5 @@
             <p>&copy; 2025 The Glitch Garden</p>
         </div>
     </footer>
-
 </body>
 </html>

@@ -1,0 +1,150 @@
+main.centrage {
+    display: flex; 
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.back-link {
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    color: #4A90E2;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #C55D9D;
+}
+
+.page-title {
+    font-size: 2rem; 
+    font-weight: bold;
+    color: #0F2027;
+    margin-bottom: 0.5rem;
+    border-bottom: 3px solid #C55D9D;
+    padding-bottom: 0.5rem;
+}
+
+.filter-container {
+    border: 1px solid rgba(74, 144, 226, 0.2); 
+    border-left: 4px solid #4A90E2; 
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    background-color: rgba(74, 144, 226, 0.05);
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter-group label {
+    font-weight: bold;
+    color: #4A90E2;
+    font-size: 0.9rem;
+}
+
+.filter-group input, .filter-group select {
+    padding: 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.filter-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.7rem;
+}
+
+.btn-filter {
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-filter:hover {
+    background-color: #C55D9D;
+}
+
+.prestations-gallery {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 2rem;
+    justify-content: center; 
+    padding-bottom: 3rem;
+}
+
+.vignette {
+    text-decoration: none;
+    color: inherit;
+    background-color: #fff;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    width: 320px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+}
+
+.vignette:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.vignette-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.vignette-content {
+    padding: 1.2rem;
+}
+
+.vignette-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+    color: #0F2027;
+}
+
+.artiste-name {
+    color: #4A90E2;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.badge-programmation {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #ddd;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.badge-programmation .heure {
+    font-weight: bold;
+    color: #C55D9D;
+}
+
+.badge-programmation .scene {
+    font-style: italic;
+    color: #666;
+}

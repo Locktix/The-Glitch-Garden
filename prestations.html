@@ -5,35 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/prestations.css"> 
     <title>The Glitch Garden - Prestations</title>
 </head>
 <body>
-
-<header>
-    <div class="centrage header-content">
-        <a href="index.html"><img src="img/logo.png" alt="Logo The Glitch Garden"></a>
-        <a id="site-title" href="index.html">The Glitch Garden</a>
-        <nav>
-            <ul class="main-nav">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="prestations.html" id="current">Prestations</a></li>
-                <li><a href="artistes.html">Artistes</a></li>
-            </ul>
-            
-            <ul>
-                <li><a href="connexion.html">Connexion</a></li>
-                <li><a href="inscription.html">S'inscrire</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    <header>
+        <div class="centrage header-content">
+            <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+            <a id="site-title" href="index.html">The Glitch Garden</a>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="prestations.html" id="current">Prestations</a></li>
+                    <li><a href="artistes.html">Artistes</a></li>
+                </ul>
+                <ul>
+                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="inscription.html">S'inscrire</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <main class="centrage">
+        <a href="index.html" class="back-link">&larr; Retour à l'accueil</a>
 
-    <img src="img/under_construction.webp" alt="Page en construction">
-    <p style="text-align: center;">⚠️ <b>Rien n'est encore affiché ici.</b> Veuillez revenir plus tard !</p>
+        <h1 class="page-title">Nos Prestations</h1>
+        <p class="page-description">Explorez les performances, ateliers et lives prévus pour cette édition.</p>
 
+        <section class="filter-container">
+            <form action="#" method="GET" class="filter-form">
+                <div class="filter-group">
+                    <label for="search">Mot-clé</label>
+                    <input type="text" id="search" name="search" placeholder="Nom, description...">
+                </div>
+
+                <div class="filter-group">
+                    <label for="artiste">Artiste</label>
+                    <select id="artiste" name="artiste">
+                        <option value="">Tous les artistes</option>
+                        <option value="artiste1">Cyber pulse</option>
+                        <option value="artiste2">Deep harmony</option>
+                        <option value="artiste3">Glitch master</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="categorie">Catégorie</label>
+                    <select id="categorie" name="categorie">
+                        <option value="">Toutes les catégories</option>
+                        <option value="ElectroHouse">Electro House</option>
+                        <option value="FuturRave">Futur Rave</option>
+                        <option value="DeepHouse">Deep House</option>
+                        <option value="MelodicTechno">Melodic Techno</option>
+                    </select>
+                </div>
+
+                <div class="filter-checkbox-group">
+                    <input type="checkbox" id="programmed" name="programmed">
+                    <label for="programmed">Uniquement programmées</label>
+                </div>
+
+                <button type="submit" class="btn-filter">Filtrer</button>
+            </form>
+        </section>
+
+        <section class="prestations-gallery">
+            
+            <a href="fiche-prestation.html" class="vignette">
+                <article>
+                    <div class="vignette-image">
+                        <img src="img/scenes/main_stage_set.jpg" alt="main_stage_set">
+                    </div>
+                    <div class="vignette-content">
+                        <span class="category-tag">Live Set</span>
+                        <h3>Set 1 : Warm-up: Deep House</h3>
+                        <p class="artiste-name">par Cyber pulse</p>
+                        
+                        <div class="badge-programmation">
+                            <span class="heure">11h30</span> — <span class="scene">Scène Principale</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+
+
+            <a href="fiche-prestation.html" class="vignette">
+                <article>
+                    <div class="vignette-image">
+                        <img src="img/scenes/main_stage_set.jpg" alt="main_stage_set">
+                    </div>
+                    <div class="vignette-content">
+                        <span class="category-tag">Live Set</span>
+                        <h3>Set 2 : Warm-up: Back to Back</h3>
+                        <p class="artiste-name">par Cyber pulse</p>
+                        
+                        <div class="badge-programmation">
+                            <span class="heure">19h00</span> — <span class="scene">Scène Principale</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+        </section>
     </main>
 
     <footer>
@@ -41,6 +115,5 @@
             <p>&copy; 2025 The Glitch Garden</p>
         </div>
     </footer>
-
 </body>
 </html>

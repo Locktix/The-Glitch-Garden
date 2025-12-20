@@ -1,8 +1,3 @@
-/* =============================
-   Styles de la Fiche Artist
-   ============================= */
-
-
 main {
     display: flex;
     flex-direction: column;
@@ -10,7 +5,6 @@ main {
     gap: 2rem;
 }
 
-/* Titre principal de la page */
 .page-title {
     font-size: 2.5rem;
     font-weight: bold;
@@ -21,7 +15,6 @@ main {
 
 }
 
-/* --- Section Entête (Photo + Infos clés) --- */
 
 .artist-profile-header {
     display: flex;
@@ -60,11 +53,6 @@ main {
     color: #0F2027;
 }
 
-/* NOTE : .styles-tags et .style-tag proviennent de artistes.css */
-
-
-/* --- Section Biographie --- */
-
 .artist-bio-section {
     border: 1px solid rgba(74, 144, 226, 0.2); 
     border-left: 5px solid #4A90E2;
@@ -83,8 +71,6 @@ main {
     margin-bottom: 1rem;
     line-height: 1.6;
 }
-
-/* --- Section Programmation --- */
 
 .artiste-programmation h2 {
     font-size: 1.5rem;
