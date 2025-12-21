@@ -74,3 +74,9 @@
 .register-form button:active {
     transform: translateY(1px);
 }
+
+@media (max-width: 600px) {
+    .register-section {
+        padding: 20px;
+    }
+}
