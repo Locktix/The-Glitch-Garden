@@ -28,7 +28,6 @@ main.centrage {
 .contact-container {
     background-color: #fff;
     border: 1px solid rgba(74, 144, 226, 0.2);
-    border-left: 4px solid #4A90E2;
     border-radius: 8px;
     padding: 2rem;
     max-width: 800px;
@@ -88,6 +87,7 @@ main.centrage {
     font-size: 0.85rem;
     color: #666;
     font-style: italic;
+    margin: 0;
 }
 
 .btn-submit {

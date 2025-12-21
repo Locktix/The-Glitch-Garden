@@ -75,6 +75,27 @@
     transform: translateY(1px);
 }
 
+.form-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.register-form #already-registered {
+    font-size: 0.9rem;
+    color: #4A90E2;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: color 0.3s;
+}
+
+.register-form #already-registered:hover {
+    color: #C55D9D;
+    text-decoration: underline;
+}
+
 @media (max-width: 600px) {
     .register-section {
         padding: 20px;
