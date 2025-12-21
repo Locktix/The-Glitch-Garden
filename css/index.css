@@ -54,6 +54,7 @@ main {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
     overflow: hidden;
+    table-layout: fixed;
 }
 
 .program-table caption {
@@ -116,4 +117,51 @@ main {
     padding: 0.5rem;
     border-left: 3px solid #4A90E2;
     padding-left: 1rem;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-description {
+        font-size: 1rem;
+    }
+
+    .program-table {
+        font-size: 0.95rem;
+    }
+
+    .program-table thead th,
+    .program-table tbody td {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+    }
+
+    .program-table thead th,
+    .program-table tbody td {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .program-table caption {
+        font-size: 0.9rem;
+    }
 }
