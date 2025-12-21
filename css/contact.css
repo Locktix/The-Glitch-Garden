@@ -25,15 +25,6 @@ main.centrage {
     padding-bottom: 0.5rem;
 }
 
-.page-title {
-    font-size: 2rem; 
-    font-weight: bold;
-    color: #0F2027;
-    margin-bottom: 0.5rem;
-    border-bottom: 3px solid #C55D9D;
-    padding-bottom: 0.5rem;
-}
-
 .contact-container {
     background-color: #fff;
     border: 1px solid rgba(74, 144, 226, 0.2);

@@ -59,10 +59,6 @@
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
 }
 
-#togglePassword:hover {
-    color: #C55D9D;
-}
-
 .login-form #forgot-password {
     margin-bottom: 20px;
     font-size: 0.9rem;
