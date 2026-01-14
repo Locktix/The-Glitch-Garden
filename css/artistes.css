@@ -65,11 +65,12 @@ main {
 
 .artistes-list {
     display: flex; 
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     padding-top: 1rem;
     padding-bottom: 2rem;
     gap: 2rem;
     justify-content: center; 
+    
 }
 
 .artiste-card {
@@ -80,6 +81,7 @@ main {
     width: 300px; 
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s, box-shadow 0.2s;
+    
 }
 
 .artiste-card:hover {
@@ -112,6 +114,7 @@ main {
 }
 
 .artiste-card-link {
+    display: flex;
     text-decoration: none;
 }
 
