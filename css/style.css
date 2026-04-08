@@ -1,6 +1,4 @@
-/*=================
-    Variables CSS
-=================*/
+/* Variables CSS */
 :root {
     --color-primary: #4A90E2;
     --color-accent: #C55D9D;
@@ -15,9 +13,7 @@
     --color-bg-light: rgba(74, 144, 226, 0.05);
 }
 
-/*=================
-    Réinitialisation et base
-=================*/
+/* Réinitialisation et base */
 *,
 *::before,
 *::after {
@@ -42,18 +38,14 @@ img {
     -webkit-user-select: none;
 }
 
-/*=================
-    Conteneur de centrage
-=================*/
+/* Conteneur de centrage */
 .centrage {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/*=================
-    Header et Navigation
-=================*/
+/* Header et Navigation */
 header {
     background-color: var(--color-dark);
     padding: 1rem;
@@ -133,9 +125,7 @@ header nav ul li a:hover {
     border-bottom: 2px solid var(--color-primary);
 }
 
-/*=================
-    Footer
-=================*/
+/* Footer */
 footer {
     background-color: var(--color-dark);
     padding: 1rem;
@@ -144,9 +134,7 @@ footer {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/*=================
-    Main et layouts
-=================*/
+/* Main et layouts */
 main {
     flex: 1;
 }
@@ -157,9 +145,7 @@ main.centrage {
     padding: 1rem;
 }
 
-/*=================
-    Titres et descriptions
-=================*/
+/* Titres et descriptions */
 .page-title,
 .section-title {
     font-size: 2rem;
@@ -183,9 +169,7 @@ main.centrage {
     margin-bottom: 2rem;
 }
 
-/*=================
-    Liens et texte
-=================*/
+/* Liens et texte */
 .back-link,
 .artiste-name {
     color: var(--color-primary);
@@ -230,9 +214,7 @@ main.centrage {
     margin: 0;
 }
 
-/*=================
-    Filtres et formulaires
-=================*/
+/* Filtres */
 .filter-label {
     display: block;
     font-weight: bold;
@@ -310,9 +292,7 @@ main.centrage {
     background-color: var(--color-accent);
 }
 
-/*=================
-    Formulaires (connexion, inscription, contact)
-=================*/
+/* Formulaires (connexion, inscription, contact) */
 .login-section,
 .register-section,
 .contact-container {
@@ -550,9 +530,7 @@ main.centrage {
     transform: scale(0.98);
 }
 
-/*=================
-    Cartes artistes
-=================*/
+/* Cartes artistes et composants */
 .artistes-list {
     display: flex;
     flex-wrap: wrap;
@@ -661,9 +639,7 @@ main.centrage {
     color: var(--color-text);
 }
 
-/*=================
-    Page artiste - profil et bio
-=================*/
+/* Page artiste - profil et bio */
 .artist-profile-header {
     display: flex;
     flex-direction: row;
@@ -720,9 +696,7 @@ main.centrage {
     line-height: 1.6;
 }
 
-/*=================
-    Programmation et fiches
-=================*/
+/* Programmation et fiches */
 .artiste-programmation h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -785,9 +759,7 @@ main.centrage {
     text-decoration: none;
 }
 
-/*=================
-    Fiche détail prestation
-=================*/
+/* Fiche détail prestation */
 .fiche-grid {
     display: flex;
     gap: 2rem;
@@ -866,9 +838,7 @@ main.centrage {
     color: var(--color-text-light);
 }
 
-/*=================
-    Galerie prestations
-=================*/
+/* Galerie prestations */
 .prestations-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -900,9 +870,7 @@ main.centrage {
     color: var(--color-dark);
 }
 
-/*=================
-    Page accueil / index
-=================*/
+/* Page accueil / index */
 .hero-section {
     padding: 3rem 1.5rem;
     margin: 2rem 0;
@@ -930,9 +898,7 @@ main.centrage {
     margin: 0;
 }
 
-/*=================
-    Tableau programme
-=================*/
+/* Tableau programme */
 .program-table {
     width: 100%;
     border-collapse: collapse;
@@ -990,9 +956,7 @@ main.centrage {
     border-bottom: 2px solid var(--color-accent);
 }
 
-/*=================
-    Responsive - Tablette
-=================*/
+/* Responsive - Tablette */
 @media (max-width: 900px) {
     .fiche-grid {
         flex-direction: column;
@@ -1043,9 +1007,7 @@ main.centrage {
     }
 }
 
-/*=================
-    Responsive - Mobile
-=================*/
+/* Responsive - Mobile */
 @media (max-width: 600px) {
     .register-section {
         padding: 1.25rem;
