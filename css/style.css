@@ -86,7 +86,7 @@ header #site-title:hover {
 
 header img {
     height: 50px;
-    margin-right: 15px;
+    margin-right: 0.9rem;
 }
 
 header nav {
@@ -110,7 +110,7 @@ header .main-nav {
 }
 
 header nav ul li {
-    margin: 0 15px;
+    margin: 0 0.9rem;
 }
 
 header nav ul li a {
@@ -118,7 +118,7 @@ header nav ul li a {
     text-decoration: none;
     font-weight: bold;
     border-bottom: 2px solid transparent;
-    padding: 5px 0;
+    padding: 0.3rem 0;
     display: inline-block;
     transition: color 0.3s, border-color 0.3s;
 }
@@ -326,7 +326,7 @@ main.centrage {
     display: flex;
     flex-direction: column;
     margin: 1.5rem auto;
-    padding: 30px;
+    padding: 1.875rem;
     border: none;
 }
 
@@ -341,9 +341,9 @@ main.centrage {
 .login-section h2,
 .register-section h2 {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 1.5rem;
     color: var(--color-dark);
-    padding-bottom: 10px;
+    padding-bottom: 0.6rem;
 }
 
 .login-section h2 {
@@ -363,7 +363,7 @@ main.centrage {
 
 .login-form label,
 .register-form label {
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
     font-weight: bold;
     color: var(--color-text);
 }
@@ -371,7 +371,7 @@ main.centrage {
 .login-form input,
 .register-form input,
 .register-form textarea {
-    padding: 12px;
+    padding: 0.75rem;
     border: 1px solid #DDDDDD;
     border-radius: 5px;
     font-size: 1rem;
@@ -380,11 +380,11 @@ main.centrage {
 
 .login-form input,
 .register-form input {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .register-form textarea {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     resize: vertical;
     min-height: 100px;
 }
@@ -399,7 +399,7 @@ main.centrage {
 
 .login-form button,
 .register-form button {
-    padding: 12px;
+    padding: 0.75rem;
     background-color: var(--color-dark);
     color: white;
     border: none;
@@ -427,13 +427,13 @@ main.centrage {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .password-container input {
     flex: 1;
     width: 100%;
-    padding: 12px;
+    padding: 0.75rem;
     margin-bottom: 0;
     box-sizing: border-box;
 }
@@ -443,7 +443,7 @@ main.centrage {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 1.25rem;
 }
 
 .login-form #forgot-password,
@@ -1048,7 +1048,7 @@ main.centrage {
 =================*/
 @media (max-width: 600px) {
     .register-section {
-        padding: 20px;
+        padding: 1.25rem;
     }
 
     .btn-submit {
