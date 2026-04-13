@@ -15,7 +15,7 @@
                 <button type="submit">Se connecter</button>
                 <div class="form-links">
                     <a href="#" id="forgot-password">Mot de passe oublié ?</a>
-                    <a href="inscription.html" id="create-account">Pas encore inscrit ?</a>
+                    <a href="inscription.php" id="create-account">Pas encore inscrit ?</a>
                 </div>
             </form>
         </section>

@@ -1,8 +1,8 @@
 <?php
     $page = 'prestations';
-    include __DIR__ . '/../View/header.php';
+    include 'app/View/header.php';
 ?>
-        <a href="index.html" class="back-link">&larr; Retour à l'accueil</a>
+        <a href="index.php" class="back-link">&larr; Retour à l'accueil</a>
 
         <h1 class="page-title">Nos Prestations</h1>
         <p class="page-description">Explorez les performances, ateliers et lives prévus pour cette édition.</p>
@@ -48,7 +48,7 @@
         </div>
 
         <section class="prestations-gallery">
-            <a href="fiche-prestation.html" class="vignette">
+            <a href="fiche-prestation.php" class="vignette">
                 <article>
                     <div class="vignette-image">
                         <img src="assets/img/scenes/temple_techno.jpg" alt="Vue de la scène Temple Techno pour le set Drum and Bass Grooves">
@@ -65,7 +65,7 @@
                 </article>
             </a>
 
-            <a href="fiche-prestation.html" class="vignette">
+            <a href="fiche-prestation.php" class="vignette">
                 <article>
                     <div class="vignette-image">
                         <img src="assets/img/scenes/jardin_chillout.jpg" alt="Vue de la scène Jardin Chillout pour le set Ambient Morning Flow">
@@ -82,7 +82,7 @@
                 </article>
             </a>
 
-            <a href="fiche-prestation.html" class="vignette">
+            <a href="fiche-prestation.php" class="vignette">
                 <article>
                     <div class="vignette-image">
                         <img src="assets/img/scenes/main_stage_set.jpg" alt="Vue de la Scène Principale pour le set Warm-up Deep House">
@@ -99,7 +99,7 @@
                 </article>
             </a>
 
-            <a href="fiche-prestation.html" class="vignette">
+            <a href="fiche-prestation.php" class="vignette">
                 <article>
                     <div class="vignette-image">
                         <img src="assets/img/scenes/jardin_chillout.jpg" alt="Vue de la scène Jardin Chillout pour le set Reggae Dub Sessions">
@@ -116,7 +116,7 @@
                 </article>
             </a>
 
-            <a href="fiche-prestation.html" class="vignette">
+            <a href="fiche-prestation.php" class="vignette">
                 <article>
                     <div class="vignette-image">
                         <img src="assets/img/scenes/temple_techno.jpg" alt="Vue de la scène Temple Techno pour le set Hard Groove">
@@ -133,7 +133,7 @@
                 </article>
             </a>
 
-            <a href="fiche-prestation.html" class="vignette">
+            <a href="fiche-prestation.php" class="vignette">
                 <article>
                     <div class="vignette-image">
                         <img src="assets/img/scenes/main_stage_set.jpg" alt="Vue de la Scène Principale pour le live Synthwave Pop">
@@ -150,7 +150,7 @@
                 </article>
             </a>
 
-            <a href="fiche-prestation.html" class="vignette">
+            <a href="fiche-prestation.php" class="vignette">
                 <article>
                     <div class="vignette-image">
                         <img src="assets/img/scenes/temple_techno.jpg" alt="Vue de la scène Temple Techno pour le live Acid Performance">
@@ -167,7 +167,7 @@
                 </article>
             </a>
 
-            <a href="fiche-prestation.html" class="vignette">
+            <a href="fiche-prestation.php" class="vignette">
                 <article>
                     <div class="vignette-image">
                         <img src="assets/img/scenes/main_stage_set.jpg" alt="Vue de la Scène Principale pour le set Back to Back">
@@ -184,7 +184,7 @@
                 </article>
             </a>
 
-            <a href="fiche-prestation.html" class="vignette">
+            <a href="fiche-prestation.php" class="vignette">
                 <article>
                     <div class="vignette-image">
                         <img src="assets/img/scenes/main_stage_set.jpg" alt="Vue de la Scène Principale pour le live Neon Drift Experience">
@@ -201,7 +201,7 @@
                 </article>
             </a>
 
-            <a href="fiche-prestation.html" class="vignette">
+            <a href="fiche-prestation.php" class="vignette">
                 <article>
                     <div class="vignette-image">
                         <img src="assets/img/scenes/temple_techno.jpg" alt="Vue de la scène Temple Techno pour le set Industrial Chaos">
@@ -219,5 +219,5 @@
             </a>
         </section>
 <?php 
-include __DIR__ . '/../View/footer.php';
+include 'app/View/footer.php';
 ?>

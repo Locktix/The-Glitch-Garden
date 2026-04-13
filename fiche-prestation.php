@@ -2,7 +2,7 @@
     $page = 'fiche-prestation';
     include 'app/View/header.php';
 ?>
-        <a class="back-link" href="prestations.html">&larr; Retour aux prestations</a>
+        <a class="back-link" href="prestations.php">&larr; Retour aux prestations</a>
 
         <h1 class="page-title">Set 1 : Warm-up: Deep House</h1>
 
@@ -20,7 +20,7 @@
 
                 <span class="proposed-by">
                     <strong>Proposé par</strong>:
-                    <a class="artiste-name" href="fiche-artiste.html">Cyber Pulse</a>
+                    <a class="artiste-name" href="fiche-artiste.php">Cyber Pulse</a>
                 </span>
 
                 <div class="badge-programmation">

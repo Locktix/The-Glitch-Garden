@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv app/model/prestations.php ./prestations.php)",
+      "Bash(mv app/model/artistes.php ./artistes.php)",
+      "Bash(mv app/view/components/fiche-prestation.php ./fiche-prestation.php)",
+      "Bash(mv app/view/components/fiche-artiste.php ./fiche-artiste.php)",
+      "Bash(rmdir app/model)",
+      "Bash(rmdir app/view/components)"
+    ]
+  }
+}

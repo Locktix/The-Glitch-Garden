@@ -29,30 +29,30 @@
             <tr>
                 <td>10 : 00</td>
                 <td></td>
-                <td><a href="fiche-prestation.html">Drum &amp; Bass Grooves</a></td>
-                <td><a href="fiche-prestation.html">Ambient Morning Flow</a></td>
+                <td><a href="fiche-prestation.php">Drum &amp; Bass Grooves</a></td>
+                <td><a href="fiche-prestation.php">Ambient Morning Flow</a></td>
             </tr>
             <tr>
                 <td>11 : 00</td>
-                <td><a href="fiche-prestation.html">Warm-up: Deep House</a></td>
+                <td><a href="fiche-prestation.php">Warm-up: Deep House</a></td>
                 <td></td>
-                <td><a href="fiche-prestation.html">Reggae/Dub Sessions</a></td>
+                <td><a href="fiche-prestation.php">Reggae/Dub Sessions</a></td>
             </tr>
             <tr>
                 <td>13 : 00</td>
                 <td></td>
-                <td><a href="fiche-prestation.html">Hard Groove Set</a></td>
+                <td><a href="fiche-prestation.php">Hard Groove Set</a></td>
                 <td></td>
             </tr>
             <tr>
                 <td>14 : 00</td>
-                <td><a href="fiche-prestation.html">Live Synthwave Pop</a></td>
-                <td><a href="fiche-prestation.html">Acid Live Performance</a></td>
+                <td><a href="fiche-prestation.php">Live Synthwave Pop</a></td>
+                <td><a href="fiche-prestation.php">Acid Live Performance</a></td>
                 <td></td>
             </tr>
             <tr>
                 <td>19 : 00</td>
-                <td><a href="fiche-prestation.html">Warm-up: Back to Back</a></td>
+                <td><a href="fiche-prestation.php">Warm-up: Back to Back</a></td>
                 <td></td>
                 <td></td>
             </tr>

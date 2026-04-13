@@ -1,9 +1,9 @@
 <?php
     $page = 'artistes';
-    include __DIR__ . '/../View/header.php';
+    include 'app/View/header.php';
 ?>
         
-        <a href="index.html" class="back-link">&larr; Retour à l'accueil</a>
+        <a href="index.php" class="back-link">&larr; Retour à l'accueil</a>
 
         <h1 class="page-title">Artistes Programmés au Glitch Garden</h1>
         <p class="page-description">Découvrez les profils complets des DJ et producteurs présents lors de cette édition.</p>
@@ -15,7 +15,7 @@
         </div>
         
         <section class="artistes-list">
-            <a href="fiche-artiste.html" class="artiste-card-link">
+            <a href="fiche-artiste.php" class="artiste-card-link">
                 <article class="artiste-card">
                     <img src="assets/img/artistes/cyber_pulse.jpg" alt="Portrait de l'artiste Cyber pulse">
                     <h2>Cyber pulse</h2>
@@ -34,7 +34,7 @@
                     </ul>
                 </article>
             </a>
-            <a href="fiche-artiste.html" class="artiste-card-link">
+            <a href="fiche-artiste.php" class="artiste-card-link">
                 <article class="artiste-card">
                     <img src="assets/img/artistes/deep_harmony.jpg" alt="Portrait de l'artiste Deep harmony">
                     <h2>Deep harmony</h2>
@@ -53,7 +53,7 @@
                     </ul>
                 </article>
             </a>
-            <a href="fiche-artiste.html" class="artiste-card-link">
+            <a href="fiche-artiste.php" class="artiste-card-link">
                 <article class="artiste-card">
                     <img src="assets/img/artistes/glitch_master.jpg" alt="Portrait de l'artiste Glitch master">
                     <h2>Glitch master</h2>
@@ -71,7 +71,7 @@
                     </ul>
                 </article>
             </a>
-            <a href="fiche-artiste.html" class="artiste-card-link">
+            <a href="fiche-artiste.php" class="artiste-card-link">
                 <article class="artiste-card">
                     <img src="assets/img/artistes/luna_sync.jpg" alt="Portrait de l'artiste Luna sync">
                     <h2>Luna sync</h2>
@@ -89,7 +89,7 @@
                     </ul>
                 </article>
             </a>
-            <a href="fiche-artiste.html" class="artiste-card-link">
+            <a href="fiche-artiste.php" class="artiste-card-link">
                 <article class="artiste-card">
                     <img src="assets/img/artistes/NEXUS.jpg" alt="Portrait de l'artiste NEXUS">
                     <h2>NEXUS</h2>
@@ -107,7 +107,7 @@
                     </ul>
                 </article>
             </a>
-            <a href="fiche-artiste.html" class="artiste-card-link">
+            <a href="fiche-artiste.php" class="artiste-card-link">
                 <article class="artiste-card">
                     <img src="assets/img/artistes/wave_motion.svg" alt="Portrait de l'artiste Wave motion">
                     <h2>Wave motion</h2>
@@ -129,5 +129,5 @@
             </section>
 
 <?php 
-include __DIR__ . '/../View/footer.php';
+include 'app/View/footer.php';
 ?>

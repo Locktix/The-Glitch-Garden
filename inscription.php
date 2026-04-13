@@ -31,7 +31,7 @@
 
                 <button type="submit">S'inscrire</button>
                 <div class="form-links">
-                    <a href="connexion.html" id="already-registered">Déjà inscrit ?</a>
+                    <a href="connexion.php" id="already-registered">Déjà inscrit ?</a>
                 </div>
             </form>
         </section>

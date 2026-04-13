@@ -3,7 +3,7 @@
     include 'app/View/header.php';
 ?>
         
-        <a href="artistes.html" class="back-link">&larr; Retour à la liste des artistes</a>
+        <a href="artistes.php" class="back-link">&larr; Retour à la liste des artistes</a>
 
         <h1 class="page-title">Cyber pulse</h1>
 
@@ -34,7 +34,7 @@
         <section class="artiste-programmation">
             <h2>Prochaines Performances</h2>
             <div class="programmation-list">
-                <a href="fiche-prestation.html" class="prestation-card-link">
+                <a href="fiche-prestation.php" class="prestation-card-link">
                     <article class="programmation-detail-card">
                         <img src="assets/img/scenes/main_stage_set.jpg" alt="Vue de la Scène Principale pour le set Warm-up Deep House" class="programmation-img">
                         
@@ -45,7 +45,7 @@
                         </div>
                     </article>
                 </a>
-                <a href="fiche-prestation.html" class="prestation-card-link">
+                <a href="fiche-prestation.php" class="prestation-card-link">
                     <article class="programmation-detail-card">
                         <img src="assets/img/scenes/main_stage_set.jpg" alt="Vue de la Scène Principale pour le set Back to Back" class="programmation-img">
                         

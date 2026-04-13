@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/The-Glitch-Garden/">
     <link rel="icon" type="image/png" href="assets/img/logo.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>The Glitch Garden - Accueil</title>
@@ -17,8 +16,8 @@
             <nav>
                 <ul class="main-nav">
                     <li><a href="index.php" <?= ($page === 'accueil') ? 'id="current"' : '' ?>>Accueil</a></li>
-                    <li><a href="app/model/prestations.php" <?= ($page === 'prestations') ? 'id="current"' : '' ?>>Prestations</a></li>
-                    <li><a href="app/model/artistes.php" <?= ($page === 'artistes') ? 'id="current"' : '' ?>>Artistes</a></li>
+                    <li><a href="prestations.php" <?= ($page === 'prestations') ? 'id="current"' : '' ?>>Prestations</a></li>
+                    <li><a href="artistes.php" <?= ($page === 'artistes') ? 'id="current"' : '' ?>>Artistes</a></li>
                     <li><a href="contact.php" <?= ($page === 'contact') ? 'id="current"' : '' ?>>Contact</a></li>
                 </ul>
 

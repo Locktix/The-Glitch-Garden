@@ -2,7 +2,7 @@
     $page = 'contact';
     include 'app/View/header.php';
 ?>
-        <a href="index.html" class="back-link">&larr; Retour à l'accueil</a>
+        <a href="index.php" class="back-link">&larr; Retour à l'accueil</a>
 
         <h1 class="page-title">Contacter l'organisateur</h1>
         <p class="page-description">Une question sur le festival ? Remplissez le formulaire ci-dessous. Une copie du message vous sera envoyée.</p>
