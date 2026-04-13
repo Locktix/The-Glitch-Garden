@@ -1,4 +1,6 @@
-<?php include 'app/View/header.php'; ?>
+<?php 
+include 'app/View/header.php';
+?>
 <section class="hero-section">
     <h1 class="hero-title">The Glitch Garden</h1>
     <p class="hero-text">
@@ -58,3 +60,6 @@
     <!--<p class="info-text">Chaque titre de prestation est un lien cliquable vers la page de détail de l'événement.</p>-->
     <!--<p class="info-note">Note : Le programme présenté est le programme officiel de la journée. Les changements sont notifiés ici.</p>-->
 </section>
+<?php 
+include 'app/View/footer.php';
+?>
