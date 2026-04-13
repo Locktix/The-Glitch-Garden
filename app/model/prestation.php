@@ -1,30 +1,30 @@
 <?php
 
-namespace App\Model;
+namespace app\model;
 
 class Prestation
 {
-    private string $nom;
+    private string $titre;
     private string $categorie;
     private string $artiste;
-    private string $heure;
+    private string $horaire;
     private string $scene;
     private string $image;
 
-    public function __construct(string $nom, string $categorie, string $artiste, string $heure, string $scene, string $image)
+    public function __construct(string $titre, string $categorie, string $artiste, string $horaire, string $scene, string $image)
     {
-        $this->nom = $nom;
+        $this->titre = $titre;
         $this->categorie = $categorie;
         $this->artiste = $artiste;
-        $this->heure = $heure;
+        $this->horaire = $horaire;
         $this->scene = $scene;
         $this->image = $image;
     }
 
-    public function getNom(): string { return $this->nom; }
+    public function gettitre(): string { return $this->titre; }
     public function getCategorie(): string { return $this->categorie; }
     public function getArtiste(): string { return $this->artiste; }
-    public function getHeure(): string { return $this->heure; }
+    public function gethoraire(): string { return $this->horaire; }
     public function getScene(): string { return $this->scene; }
     public function getImage(): string { return $this->image; }
 

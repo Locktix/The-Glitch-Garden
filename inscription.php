@@ -35,7 +35,6 @@
                 </div>
             </form>
         </section>
-    </main>
 <?php 
 include 'app/view/footer.php';
 ?>

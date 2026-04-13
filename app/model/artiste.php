@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace app\model;
 
 class Artiste
 {
@@ -78,6 +78,14 @@ class Artiste
                 'assets/img/artistes/wave_motion.svg',
                 ['Drum & Bass', 'Liquid Funk'],
                 ['10h00 - Drum & Bass Grooves - Temple Techno', '19h00 - Warm-up: Back to Back - Scène Principale']
+            ),
+            new Artiste(
+                'Dj Snake',
+                'William Smith',
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus voluptates quas alias praesentium quod. Accusamus, illo.',
+                'assets/img/artistes/dj_snake.jpg',
+                ['Trap', 'Bass Music'],
+                []
             ),
         ];
     }

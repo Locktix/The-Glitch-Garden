@@ -2,7 +2,7 @@
 
     <footer>
         <div class="centrage">
-            <p>&copy; 2025 The Glitch Garden</p>
+            <p>&copy; <?php echo date('Y'); ?> The Glitch Garden</p>
         </div>
     </footer>
 

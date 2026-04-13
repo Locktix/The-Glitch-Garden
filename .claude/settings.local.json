@@ -6,7 +6,19 @@
       "Bash(mv app/view/components/fiche-prestation.php ./fiche-prestation.php)",
       "Bash(mv app/view/components/fiche-artiste.php ./fiche-artiste.php)",
       "Bash(rmdir app/model)",
-      "Bash(rmdir app/view/components)"
+      "Bash(rmdir app/view/components)",
+      "Bash(mv model:*)",
+      "Bash(mv Model_tmp Model)",
+      "Bash(mv view:*)",
+      "Bash(mv View_tmp View)",
+      "Bash(sed -i \"s|app/view/|app/View/|g\" index.php contact.php connexion.php inscription.php fiche-prestation.php fiche-artiste.php prestations.php artistes.php)",
+      "Bash(sed -i \"s|app/model/|app/Model/|g\" prestations.php artistes.php)",
+      "Bash(mv Model model_tmp)",
+      "Bash(mv model_tmp model)",
+      "Bash(mv View view_tmp)",
+      "Bash(mv view_tmp view)",
+      "Bash(sed -i \"s|namespace App\\\\\\\\\\\\\\\\Model|namespace app\\\\\\\\\\\\\\\\model|g\" app/model/artiste.php app/model/prestation.php)",
+      "Bash(sed -i \"s|use App\\\\\\\\\\\\\\\\Model|use app\\\\\\\\\\\\\\\\model|g\" artistes.php prestations.php)"
     ]
   }
 }
