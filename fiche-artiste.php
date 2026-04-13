@@ -1,33 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="assets/img/logo.png">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>The Glitch Garden - Cyber pulse</title>
-</head>
-<body>
-    <header>
-        <div class="centrage header-content">
-            <a href="index.html"><img src="assets/img/logo.png" alt="Logo The Glitch Garden"></a>
-            <a id="site-title" href="index.html">The Glitch Garden</a>
-            <nav>
-                <ul class="main-nav">
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="prestations.html">Prestations</a></li>
-                    <li><a href="artistes.html" id="current">Artistes</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-                <ul>
-                    <li><a href="connexion.html">Connexion</a></li>
-                    <li><a href="inscription.html">S'inscrire</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main class="centrage">
+<?php
+    $page = 'fiche-artiste';
+    include 'app/View/header.php';
+?>
         
         <a href="artistes.html" class="back-link">&larr; Retour à la liste des artistes</a>
 
@@ -85,12 +59,6 @@
             </div>
         </section>
 
-    </main>
-
-    <footer>
-        <div class="centrage">
-            <p>&copy; 2025 The Glitch Garden</p>
-        </div>
-    </footer>
-</body>
-</html>
+<?php 
+include 'app/View/footer.php';
+?>

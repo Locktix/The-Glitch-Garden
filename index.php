@@ -1,5 +1,6 @@
-<?php 
-include 'app/View/header.php';
+<?php
+    $page = 'accueil';
+    include 'app/View/header.php';
 ?>
 <section class="hero-section">
     <h1 class="hero-title">The Glitch Garden</h1>
