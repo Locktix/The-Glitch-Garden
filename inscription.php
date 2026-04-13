@@ -1,6 +1,6 @@
 <?php
     $page = 'inscription';
-    include 'app/View/header.php';
+    include 'app/view/header.php';
 ?>
         <section class="register-section">
             <h1>Inscription</h1>
@@ -37,5 +37,5 @@
         </section>
     </main>
 <?php 
-include 'app/View/footer.php';
+include 'app/view/footer.php';
 ?>

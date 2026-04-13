@@ -1,6 +1,6 @@
 <?php
     $page = 'accueil';
-    include 'app/View/header.php';
+    include 'app/view/header.php';
 ?>
 <section class="hero-section">
     <h1 class="hero-title">The Glitch Garden</h1>
@@ -62,5 +62,5 @@
     <!--<p class="info-note">Note : Le programme présenté est le programme officiel de la journée. Les changements sont notifiés ici.</p>-->
 </section>
 <?php 
-include 'app/View/footer.php';
+include 'app/view/footer.php';
 ?>

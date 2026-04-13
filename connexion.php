@@ -1,6 +1,6 @@
 <?php
     $page = 'connexion';
-    include 'app/View/header.php';
+    include 'app/view/header.php';
 ?>
         <section class="login-section">
             <h1>Connexion</h1>
@@ -20,5 +20,5 @@
             </form>
         </section>
 <?php 
-include 'app/View/footer.php';
+include 'app/view/footer.php';
 ?>

@@ -1,6 +1,6 @@
 <?php
     $page = 'fiche-prestation';
-    include 'app/View/header.php';
+    include 'app/view/header.php';
 ?>
         <a class="back-link" href="prestations.php">&larr; Retour aux prestations</a>
 
@@ -32,5 +32,5 @@
         </div>
     </main>
 <?php 
-include 'app/View/footer.php';
+include 'app/view/footer.php';
 ?>

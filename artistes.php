@@ -1,6 +1,6 @@
 <?php
     $page = 'artistes';
-    include 'app/View/header.php';
+    include 'app/view/header.php';
 ?>
         
         <a href="index.php" class="back-link">&larr; Retour à l'accueil</a>
@@ -129,5 +129,5 @@
             </section>
 
 <?php 
-include 'app/View/footer.php';
+include 'app/view/footer.php';
 ?>
