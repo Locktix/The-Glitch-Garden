@@ -15,6 +15,7 @@
     --color-muted: #999999;
     --color-border-dark: #DDDDDD;
     --color-text-dark: #222222;
+    --color-error: #E74C3C;
 }
 
 /* Réinitialisation et base */
@@ -953,6 +954,13 @@ main.centrage {
 .program-table tbody a:hover {
     color: var(--color-accent);
     border-bottom: 2px solid var(--color-accent);
+}
+
+.error-message {
+    color: var(--color-error);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    display: block;
 }
 
 /* Responsive - Tablette */
