@@ -4,7 +4,7 @@
 function afficherCarteArtiste(string $nom, string $description, array $styles, array $programmation, string $image): void {
 
     ?>
-    <a href="fiche-artiste.php" class="artiste-card-link">
+    <a href="fiche-artiste.php" class="artiste-card-link" data-programmed="<?php echo count($programmation) > 0 ? 'true' : 'false'; ?>">
         <article class="artiste-card">
             <img src="<?php echo htmlspecialchars($image); ?>" alt="Portrait de l'artiste <?php echo htmlspecialchars($nom); ?>">
             <h2><?php echo htmlspecialchars($nom); ?></h2>

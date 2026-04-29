@@ -223,6 +223,32 @@ main.centrage {
 }
 
 /* Filtres */
+#filter-toggle {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#filter-toggle:checked ~ .artistes-list .artiste-card-link[data-programmed="false"] {
+    display: none;
+}
+
+.filter-label::before {
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+#filter-toggle:checked + .filter-container .filter-label::before {
+    background-color: var(--color-primary);
+}
+
 .filter-label {
     display: block;
     font-weight: bold;

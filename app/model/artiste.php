@@ -2,6 +2,11 @@
 
 namespace app\model;
 
+require_once __DIR__ . '/../Database/Database.php';
+
+use App\Database\Database;
+use PDO;
+
 class Artiste
 {
     private string $nom;
@@ -27,6 +32,60 @@ class Artiste
     public function getImage(): string { return $this->image; }
     public function getStyles(): array { return $this->styles; }
     public function getProgrammation(): array { return $this->programmation; }
+
+    public static function getAll(): array
+    {
+        $pdo = Database::getPDO();
+
+        // 1. Récupérer tous les artistes (pas l'organisateur)
+        $req = $pdo->prepare("
+            SELECT id, nom_artiste, nom, prenom, description, photo
+            FROM utilisateurs
+            WHERE est_organisateur = FALSE
+        ");
+        $req->execute();
+        $rows = $req->fetchAll(PDO::FETCH_ASSOC);
+
+        $artistes = [];
+
+        foreach ($rows as $row) {
+
+            // 2. Récupérer la programmation de cet artiste
+            $reqProg = $pdo->prepare("
+                SELECT CONCAT(pr.heure_debut, ' - ', p.titre, ' - ', s.nom) AS ligne
+                FROM prestations p
+                JOIN programmation pr ON pr.prestation_id = p.id
+                JOIN scenes s ON s.id = pr.scene_id
+                WHERE p.artiste_id = :id
+            ");
+            $reqProg->execute([':id' => $row['id']]);
+            $programmation = $reqProg->fetchAll(PDO::FETCH_COLUMN);
+
+            // 3. Récupérer les catégories de cet artiste
+            $reqCat = $pdo->prepare("
+                SELECT DISTINCT c.nom
+                FROM prestations p
+                JOIN categories c ON c.id = p.categorie_id
+                WHERE p.artiste_id = :id
+            ");
+            $reqCat->execute([':id' => $row['id']]);
+            $categorie = $reqCat->fetchAll(PDO::FETCH_COLUMN);
+
+            $artistes[] = new Artiste(
+                $row['nom_artiste'] ?? '',
+                $row['prenom'] . ' ' . $row['nom'],
+                $row['description'] ?? '',
+                $row['photo'] ?? '',
+                $categorie,
+                $programmation
+            );
+        }
+
+        return $artistes;
+    }
+
+
+/*
 
     public static function getAll(): array
     {
@@ -89,4 +148,7 @@ class Artiste
             ),
         ];
     }
+*/
 }
+
+?>
