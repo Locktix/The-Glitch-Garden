@@ -1,9 +1,9 @@
 <?php
 
-function afficherCartePrestation(string $nom, string $categorie, string $artiste, string $heure, string $scene, string $image): void {
+function afficherCartePrestation(int $id, string $nom, string $categorie, string $artiste, string $heure, string $scene, string $image): void {
 
     ?>
-    <a href="fiche-prestation.php" class="vignette">
+    <a href="fiche-prestation.php?id=<?php echo $id; ?>" class="vignette">
         <article>
             <div class="vignette-image">
                 <img src="<?php echo htmlspecialchars($image); ?>" alt="Vue de la scène <?php echo htmlspecialchars($scene); ?> pour le set <?php echo htmlspecialchars($nom); ?>">

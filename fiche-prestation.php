@@ -1,36 +1,55 @@
 <?php
-    $page = 'fiche-prestation';
-    include 'app/view/header.php';
+require_once 'app/model/prestation.php';
+
+use app\model\Prestation;
+
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+if ($id === 0) {
+    header('Location: prestations.php?erreur=' . urlencode('Prestation introuvable.'));
+    exit;
+}
+
+try {
+    $prestation = Prestation::getById($id);
+} catch (PDOException $e) {
+    header('Location: prestations.php?erreur=' . urlencode('Erreur : ' . $e->getMessage()));
+    exit;
+}
+
+if (!$prestation) {
+    header('Location: prestations.php?erreur=' . urlencode('Prestation introuvable.'));
+    exit;
+}
+
+$page = 'fiche-prestation';
+include 'app/view/header.php';
 ?>
-        <a class="back-link" href="prestations.php">&larr; Retour aux prestations</a>
 
-        <h1 class="page-title">Set 1 : Warm-up: Deep House</h1>
+<a class="back-link" href="prestations.php">&larr; Retour aux prestations</a>
 
-        <div class="fiche-grid">
-            <div class="fiche-image">
-                <img src="assets/img/scenes/main_stage_set.jpg" alt="Photo de la Scène Principale pour la prestation Warm-up Deep House">
-            </div>
+<h1 class="page-title"><?php echo htmlspecialchars($prestation->getTitre()); ?></h1>
 
-            <div class="fiche-details">
-                <div class="categorie-badge">Catégorie: <span class="categorie">Musique électronique</span></div>
+<div class="fiche-grid">
+    <div class="fiche-image">
+        <img src="<?php echo htmlspecialchars($prestation->getImage()); ?>" alt="Photo de <?php echo htmlspecialchars($prestation->getScene()); ?> pour la prestation <?php echo htmlspecialchars($prestation->getTitre()); ?>">
+    </div>
 
-                <p class="description">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus incidunt unde autem ex ducimus consequuntur modi sit aspernatur, eos pariatur laboriosam veniam molestias voluptatem. Atque accusamus placeat itaque odit sapiente.
-                </p>
+    <div class="fiche-details">
+        <div class="categorie-badge">Catégorie: <span class="categorie"><?php echo htmlspecialchars($prestation->getCategorie()); ?></span></div>
 
-                <span class="proposed-by">
-                    <strong>Proposé par</strong>:
-                    <a class="artiste-name" href="fiche-artiste.php">Cyber Pulse</a>
-                </span>
+        <p class="description"><?php echo htmlspecialchars($prestation->getDescription()); ?></p>
 
-                <div class="badge-programmation">
-                    <div class="heure">11:00</div>
-                    <div class="scene">Scène : Scène Principale</div>
-                </div>
+        <span class="proposed-by">
+            <strong>Proposé par</strong> :
+            <a class="artiste-name" href="fiche-artiste.php?id=<?php echo $prestation->getArtisteId(); ?>"><?php echo htmlspecialchars($prestation->getArtiste()); ?></a>
+        </span>
 
-            </div>
+        <div class="badge-programmation">
+            <div class="heure"><?php echo htmlspecialchars($prestation->getHoraire()); ?></div>
+            <div class="scene">Scène : <?php echo htmlspecialchars($prestation->getScene()); ?></div>
         </div>
-    </main>
-<?php 
-include 'app/view/footer.php';
-?>
+    </div>
+</div>
+
+<?php include 'app/view/footer.php'; ?>

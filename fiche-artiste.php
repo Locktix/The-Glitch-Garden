@@ -1,64 +1,76 @@
 <?php
-    $page = 'fiche-artiste';
-    include 'app/view/header.php';
+require_once 'app/model/artiste.php';
+require_once 'app/model/prestation.php';
+
+use app\model\Artiste;
+use app\model\Prestation;
+
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+if ($id === 0) {
+    header('Location: artistes.php?erreur=' . urlencode('Artiste introuvable.'));
+    exit;
+}
+
+try {
+    $artiste = Artiste::getById($id);
+} catch (PDOException $e) {
+    header('Location: artistes.php?erreur=' . urlencode('Erreur : ' . $e->getMessage()));
+    exit;
+}
+
+if (!$artiste) {
+    header('Location: artistes.php?erreur=' . urlencode('Artiste introuvable.'));
+    exit;
+}
+
+$page = 'fiche-artiste';
+include 'app/view/header.php';
 ?>
-        
-        <a href="artistes.php" class="back-link">&larr; Retour à la liste des artistes</a>
 
-        <h1 class="page-title">Cyber pulse</h1>
+<a href="artistes.php" class="back-link">&larr; Retour à la liste des artistes</a>
 
-        <div class="artist-profile-header">
-            <img src="assets/img/artistes/cyber_pulse.jpg" alt="Portrait de Cyber pulse" class="artist-photo">
-            
-            <div class="artist-presentation">
-                <span class="artist-real-name">Nom réel : Antoine Dupont</span>
+<h1 class="page-title"><?php echo htmlspecialchars($artiste->getNom()); ?></h1>
 
-                <h2>Styles Musicaux</h2>
-                <ul class="styles-tags">
-                    <li class="style-tag">Electro House</li>
-                    <li class="style-tag">Future Rave</li>
-                </ul>
-            </div>
-        </div>
+<div class="artist-profile-header">
+    <img src="<?php echo htmlspecialchars($artiste->getImage()); ?>" alt="Portrait de <?php echo htmlspecialchars($artiste->getNom()); ?>" class="artist-photo">
 
-        <section class="artist-bio-section">
-            <h2>Biographie</h2>
-            <p class="artist-bio">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem est maiores nam quidem eveniet doloribus eligendi dolorum eaque distinctio, cum deleniti sequi odio praesentium incidunt ducimus veritatis. Atque, modi a?
-            </p>
-            <p class="artist-bio">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, ipsa natus laudantium nihil, veniam neque expedita a beatae et qui placeat accusantium praesentium tenetur temporibus excepturi minus porro, laboriosam quaerat?
-            </p>
-        </section>
+    <div class="artist-presentation">
+        <span class="artist-real-name">Nom réel : <?php echo htmlspecialchars($artiste->getNomReel()); ?></span>
 
-        <section class="artiste-programmation">
-            <h2>Prochaines Performances</h2>
-            <div class="programmation-list">
-                <a href="fiche-prestation.php" class="prestation-card-link">
-                    <article class="programmation-detail-card">
-                        <img src="assets/img/scenes/main_stage_set.jpg" alt="Vue de la Scène Principale pour le set Warm-up Deep House" class="programmation-img">
-                        
-                        <h3>Set 1 : Warm-up: Deep House</h3>
-                        <div class="detail-info">
-                            <span class="time">11:00 - 13:00</span>
-                            <span class="stage">Scène principale</span>
-                        </div>
-                    </article>
-                </a>
-                <a href="fiche-prestation.php" class="prestation-card-link">
-                    <article class="programmation-detail-card">
-                        <img src="assets/img/scenes/main_stage_set.jpg" alt="Vue de la Scène Principale pour le set Back to Back" class="programmation-img">
-                        
-                        <h3>Set 2 : Warm-up: Back to Back</h3>
-                        <div class="detail-info">
-                            <span class="time">19:00 - 22:30</span>
-                            <span class="stage">Scène principale</span>
-                        </div>
-                    </article>
-                </a>
-            </div>
-        </section>
+        <h2>Styles Musicaux</h2>
+        <ul class="styles-tags">
+            <?php foreach ($artiste->getStyles() as $style): ?>
+                <li class="style-tag"><?php echo htmlspecialchars($style); ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
 
-<?php 
-include 'app/view/footer.php';
-?>
+<section class="artist-bio-section">
+    <h2>Biographie</h2>
+    <p class="artist-bio"><?php echo htmlspecialchars($artiste->getBio()); ?></p>
+</section>
+
+<?php $performances = Prestation::getByArtisteId($artiste->getId()); ?>
+<?php if (!empty($performances)): ?>
+<section class="artiste-programmation">
+    <h2>Prochaines Performances</h2>
+    <div class="programmation-list">
+        <?php foreach ($performances as $i => $perf): ?>
+            <a href="fiche-prestation.php?id=<?php echo $perf->getId(); ?>" class="prestation-card-link">
+                <article class="programmation-detail-card">
+                    <img src="<?php echo htmlspecialchars($perf->getImage()); ?>" alt="Vue de <?php echo htmlspecialchars($perf->getScene()); ?> pour le set <?php echo htmlspecialchars($perf->getTitre()); ?>" class="programmation-img">
+                    <h3>Set <?php echo $i + 1; ?> : <?php echo htmlspecialchars($perf->getTitre()); ?></h3>
+                    <div class="detail-info">
+                        <span class="time"><?php echo htmlspecialchars($perf->getHoraire()); ?></span>
+                        <span class="stage"><?php echo htmlspecialchars($perf->getScene()); ?></span>
+                    </div>
+                </article>
+            </a>
+        <?php endforeach; ?>
+    </div>
+</section>
+<?php endif; ?>
+
+<?php include 'app/view/footer.php'; ?>

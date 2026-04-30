@@ -1,0 +1,135 @@
+<?php
+require_once 'app/database/database.php';
+use App\Database\Database;
+
+// Utilisateur fixe en dur
+$type   = isset($_GET['type']) ? $_GET['type'] : 'artiste';
+$userId = ($type === 'organisateur') ? 1 : 2;
+$retour = ($type === 'organisateur') ? 'dashboard-organisateur.php' : 'dashboard-artiste.php';
+
+$pdo     = Database::getPDO();
+$erreurs = [];
+$succes  = '';
+
+$req = $pdo->prepare("SELECT * FROM utilisateurs WHERE id = :id");
+$req->execute([':id' => $userId]);
+$user = $req->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    header('Location: index.php');
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nom        = trim($_POST['nom'] ?? '');
+    $prenom     = trim($_POST['prenom'] ?? '');
+    $email      = trim($_POST['email'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $nomArtiste = trim($_POST['nom_artiste'] ?? '');
+    $mdp        = $_POST['mot_de_passe'] ?? '';
+    $mdpConfirm = $_POST['mot_de_passe_confirm'] ?? '';
+
+    if ($nom === '')    $erreurs['nom']    = 'Le nom est obligatoire.';
+    if ($prenom === '') $erreurs['prenom'] = 'Le prénom est obligatoire.';
+
+    if ($email === '') {
+        $erreurs['email'] = "L'e-mail est obligatoire.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $erreurs['email'] = "Format d'e-mail invalide.";
+    } else {
+        $check = $pdo->prepare("SELECT id FROM utilisateurs WHERE email = :email AND id != :id");
+        $check->execute([':email' => $email, ':id' => $userId]);
+        if ($check->fetch()) {
+            $erreurs['email'] = "Cet e-mail est déjà utilisé.";
+        }
+    }
+
+    if ($mdp !== '' && $mdp !== $mdpConfirm) {
+        $erreurs['mot_de_passe_confirm'] = "Les mots de passe ne correspondent pas.";
+    }
+
+    if (empty($erreurs)) {
+        if ($mdp !== '') {
+            $upd = $pdo->prepare("UPDATE utilisateurs SET nom = :nom, prenom = :prenom, email = :email, description = :desc, nom_artiste = :na, mot_de_passe = :mdp WHERE id = :id");
+            $upd->execute([':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':desc' => $description, ':na' => $nomArtiste ?: null, ':mdp' => $mdp, ':id' => $userId]);
+        } else {
+            $upd = $pdo->prepare("UPDATE utilisateurs SET nom = :nom, prenom = :prenom, email = :email, description = :desc, nom_artiste = :na WHERE id = :id");
+            $upd->execute([':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':desc' => $description, ':na' => $nomArtiste ?: null, ':id' => $userId]);
+        }
+        $succes = "Profil mis à jour avec succès.";
+        $req->execute([':id' => $userId]);
+        $user = $req->fetch(PDO::FETCH_ASSOC);
+    } else {
+        $user['nom']         = $nom;
+        $user['prenom']      = $prenom;
+        $user['email']       = $email;
+        $user['description'] = $description;
+        $user['nom_artiste'] = $nomArtiste;
+    }
+}
+
+$page = 'profil';
+include 'app/view/header.php';
+?>
+
+<a href="<?php echo $retour; ?>" class="back-link">&larr; Retour au dashboard</a>
+<h1 class="page-title">Éditer mon profil</h1>
+
+<?php if ($succes): ?>
+    <div class="succes-message"><?php echo htmlspecialchars($succes); ?></div>
+<?php endif; ?>
+
+<form method="POST" action="profil.php?type=<?php echo htmlspecialchars($type); ?>">
+
+    <div class="form-group">
+        <label for="prenom">Prénom *</label>
+        <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($user['prenom']); ?>" <?php echo isset($erreurs['prenom']) ? 'class="input-error"' : ''; ?>>
+        <?php if (isset($erreurs['prenom'])): ?><span class="field-error"><?php echo $erreurs['prenom']; ?></span><?php endif; ?>
+    </div>
+
+    <div class="form-group">
+        <label for="nom">Nom *</label>
+        <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($user['nom']); ?>" <?php echo isset($erreurs['nom']) ? 'class="input-error"' : ''; ?>>
+        <?php if (isset($erreurs['nom'])): ?><span class="field-error"><?php echo $erreurs['nom']; ?></span><?php endif; ?>
+    </div>
+
+    <?php if ($type === 'artiste'): ?>
+    <div class="form-group">
+        <label for="nom_artiste">Nom d'artiste</label>
+        <input type="text" id="nom_artiste" name="nom_artiste" value="<?php echo htmlspecialchars($user['nom_artiste'] ?? ''); ?>">
+    </div>
+    <?php endif; ?>
+
+    <div class="form-group">
+        <label for="email">E-mail *</label>
+        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" <?php echo isset($erreurs['email']) ? 'class="input-error"' : ''; ?>>
+        <?php if (isset($erreurs['email'])): ?><span class="field-error"><?php echo $erreurs['email']; ?></span><?php endif; ?>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Biographie</label>
+        <textarea id="description" name="description"><?php echo htmlspecialchars($user['description'] ?? ''); ?></textarea>
+    </div>
+
+    <h2 class="section-title">Changer de mot de passe</h2>
+    <p class="page-description">Laisser vide pour conserver le mot de passe actuel.</p>
+
+    <div class="form-group">
+        <label for="mot_de_passe">Nouveau mot de passe</label>
+        <input type="password" id="mot_de_passe" name="mot_de_passe">
+    </div>
+
+    <div class="form-group">
+        <label for="mot_de_passe_confirm">Confirmer le mot de passe</label>
+        <input type="password" id="mot_de_passe_confirm" name="mot_de_passe_confirm" <?php echo isset($erreurs['mot_de_passe_confirm']) ? 'class="input-error"' : ''; ?>>
+        <?php if (isset($erreurs['mot_de_passe_confirm'])): ?><span class="field-error"><?php echo $erreurs['mot_de_passe_confirm']; ?></span><?php endif; ?>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn">Enregistrer</button>
+        <a href="<?php echo $retour; ?>" class="btn btn-secondary">Annuler</a>
+    </div>
+
+</form>
+
+<?php include 'app/view/footer.php'; ?>

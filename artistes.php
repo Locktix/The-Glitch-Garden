@@ -12,6 +12,8 @@ try {
     $erreur = "Erreur : " . $e->getMessage();
 }
 
+$erreur = $erreur ?: (isset($_GET['erreur']) ? htmlspecialchars($_GET['erreur']) : '');
+
 require_once 'app/view/components/artiste-card.php';
 
 $page = 'artistes';
@@ -33,17 +35,23 @@ include 'app/view/header.php';
 		</div>
 	<?php endif; ?>
 	
-	<section class="artistes-list">
-		<?php foreach ($artistes as $artiste) {
-			afficherCarteArtiste(
-				$artiste->getNom(),
-				$artiste->getBio(),
-				$artiste->getStyles(),
-				$artiste->getProgrammation(),
-				$artiste->getImage(),
-			);
-		} ?>
-	</section>
+	<?php if (empty($artistes) && !$erreur): ?>
+		<p class="no-results">Aucun artiste trouvé.</p>
+	<?php else: ?>
+		<section class="artistes-list">
+			<p class="no-artiste-filter">Aucun artiste programmé à afficher.</p>
+			<?php foreach ($artistes as $artiste) {
+				afficherCarteArtiste(
+					$artiste->getId(),
+					$artiste->getNom(),
+					$artiste->getBio(),
+					$artiste->getStyles(),
+					$artiste->getProgrammation(),
+					$artiste->getImage()
+				);
+			} ?>
+		</section>
+	<?php endif; ?>
 
 <?php 
 include 'app/view/footer.php';

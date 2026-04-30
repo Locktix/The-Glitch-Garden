@@ -22,7 +22,9 @@
                 </ul>
 
                 <ul>
-                    <li><a href="connexion.php" <?= ($page === 'connexion') ? 'id="current"' : '' ?>>Se connecter</a></li>
+                    <!--<li><a href="connexion.php" <?= ($page === 'connexion') ? 'id="current"' : '' ?>>Se connecter</a></li>-->
+                    <li><a href="dashboard-organisateur.php" <?= ($page === 'dashboard-organisateur') ? 'id="current"' : '' ?>>Dashboard Organisateur</a></li>
+                    <li><a href="dashboard-artiste.php" <?= ($page === 'dashboard-artiste') ? 'id="current"' : '' ?>>Dashboard Artiste</a></li>
                     <li><a href="inscription.php" <?= ($page === 'inscription') ? 'id="current"' : '' ?>>S'inscrire</a></li>
                 </ul>
             </nav>
