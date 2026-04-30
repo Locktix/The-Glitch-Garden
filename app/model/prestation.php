@@ -136,12 +136,12 @@ class Prestation
                 u.nom_artiste                        AS artiste,
                 u.id                                 AS artiste_id,
                 TIME_FORMAT(pr.heure_debut, '%Hh%i') AS horaire,
-                s.nom                                AS scene
+                COALESCE(s.nom, '')                  AS scene
             FROM prestations p
-            JOIN categories c   ON c.id = p.categorie_id
-            JOIN utilisateurs u ON u.id = p.artiste_id
-            JOIN programmation pr ON pr.prestation_id = p.id
-            JOIN scenes s  ON s.id = pr.scene_id
+            JOIN categories c        ON c.id = p.categorie_id
+            JOIN utilisateurs u      ON u.id = p.artiste_id
+            LEFT JOIN programmation pr ON pr.prestation_id = p.id
+            LEFT JOIN scenes s         ON s.id = pr.scene_id
             WHERE p.artiste_id = :id
             ORDER BY pr.heure_debut ASC
         ");

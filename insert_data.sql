@@ -207,6 +207,163 @@ INSERT INTO prestations (titre, description, image, categorie_id, artiste_id) VA
         'Un set techno industriel chaotique et sans compromis pour les amateurs de sons extrêmes.',
         'assets/img/scenes/temple_techno.jpg',
         1, 6
+    ),
+    -- Cyber pulse (id 2) — prestations 11, 12, 13
+    (
+        'Techno Closing Set',
+        'Un set techno dévastateur pour clôturer la nuit avec des basses lourdes et des rythmes effrénés.',
+        'assets/img/scenes/temple_techno.jpg',
+        1, 2
+    ),
+    (
+        'Electro Fusion Live',
+        'Une performance live qui fusionne électro et musique expérimentale dans une atmosphère unique.',
+        'assets/img/scenes/main_stage_set.jpg',
+        2, 2
+    ),
+    (
+        'Midnight Rave',
+        'Un DJ set pour les noctambules, mêlant acid techno et breaks hypnotiques.',
+        'assets/img/scenes/temple_techno.jpg',
+        1, 2
+    ),
+    -- Deep harmony (id 3) — prestations 14, 15, 16
+    (
+        'Chill Deep Session',
+        'Une session deep house apaisante pour les fins de soirée au Jardin Chillout.',
+        'assets/img/scenes/jardin_chillout.jpg',
+        1, 3
+    ),
+    (
+        'Organic Techno Flow',
+        'Un voyage sonore entre techno organique et mélodies hypnotiques.',
+        'assets/img/scenes/main_stage_set.jpg',
+        2, 3
+    ),
+    (
+        'Sunrise Ambient',
+        'Une performance live ambiante pour accueillir le lever du soleil en douceur.',
+        'assets/img/scenes/jardin_chillout.jpg',
+        3, 3
+    ),
+    -- Glitch master (id 4) — prestations 17, 18, 19, 20
+    (
+        'Glitch Experiment',
+        'Un set expérimental qui explore les glitchs sonores et les textures électroniques.',
+        'assets/img/scenes/temple_techno.jpg',
+        3, 4
+    ),
+    (
+        'Bass & Breaks',
+        'Un set orienté bass music avec des breaks percutants et des lignes de basse profondes.',
+        'assets/img/scenes/temple_techno.jpg',
+        1, 4
+    ),
+    (
+        'Lo-Fi Club Night',
+        'Une soirée lo-fi club pour les amateurs de sons vintage et de grooves chaleureux.',
+        'assets/img/scenes/jardin_chillout.jpg',
+        2, 4
+    ),
+    (
+        'Dub Techno Journey',
+        'Un voyage sonore dans les profondeurs du dub techno minimaliste.',
+        'assets/img/scenes/main_stage_set.jpg',
+        1, 4
+    ),
+    -- Luna sync (id 5) — prestations 21, 22, 23
+    (
+        'Lunar Trance',
+        'Un set trance planant pour voyager sous les étoiles au rythme de mélodies cosmiques.',
+        'assets/img/scenes/main_stage_set.jpg',
+        2, 5
+    ),
+    (
+        'Crystal Frequencies',
+        'Une performance live aux synthétiseurs cristallins pour une expérience sensorielle unique.',
+        'assets/img/scenes/jardin_chillout.jpg',
+        3, 5
+    ),
+    (
+        'Deep Space Mix',
+        'Un mix immersif inspiré des profondeurs de l''espace et des sonorités cosmiques.',
+        'assets/img/scenes/main_stage_set.jpg',
+        1, 5
+    ),
+    -- NEXUS (id 6) — prestations 24, 25, 26
+    (
+        'Neural Techno',
+        'Un set techno aux sonorités futuristes, inspiré de l''intelligence artificielle et du cyberpunk.',
+        'assets/img/scenes/temple_techno.jpg',
+        1, 6
+    ),
+    (
+        'Dark Rave Sessions',
+        'Des sessions rave sombres et intenses pour les amateurs de sons underground.',
+        'assets/img/scenes/temple_techno.jpg',
+        1, 6
+    ),
+    (
+        'Hypnotic Groove',
+        'Un set hypnotique aux boucles répétitives et aux textures sonores envoûtantes.',
+        'assets/img/scenes/main_stage_set.jpg',
+        2, 6
+    ),
+    -- Wave motion (id 7) — prestations 27, 28, 29, 30
+    (
+        'Wave Riders',
+        'Un set surf électronique mêlant house légère et rythmiques ondulantes.',
+        'assets/img/scenes/jardin_chillout.jpg',
+        1, 7
+    ),
+    (
+        'Liquid Drum & Bass',
+        'Une plongée dans le liquid drum & bass avec des lignes de basse fluides et des mélodies aériennes.',
+        'assets/img/scenes/main_stage_set.jpg',
+        1, 7
+    ),
+    (
+        'Motion Live',
+        'Une performance live qui combine instruments acoustiques et électronique pour un résultat unique.',
+        'assets/img/scenes/main_stage_set.jpg',
+        3, 7
+    ),
+    (
+        'Sunset Groove',
+        'Un set groovy pour accompagner le coucher du soleil avec des rythmiques entraînantes.',
+        'assets/img/scenes/jardin_chillout.jpg',
+        2, 7
+    ),
+    -- Dj Snake (id 8) — prestations 31, 32, 33, 34, 35
+    (
+        'Snake Charmer Set',
+        'Un DJ set explosif mêlant EDM et trap pour enflammer la scène principale.',
+        'assets/img/scenes/main_stage_set.jpg',
+        1, 8
+    ),
+    (
+        'Taki Taki Experience',
+        'Une expérience musicale internationale aux sonorités latines et électroniques.',
+        'assets/img/scenes/main_stage_set.jpg',
+        3, 8
+    ),
+    (
+        'Underground Beats',
+        'Retour aux sources avec un set underground puisant dans les racines de la dance music.',
+        'assets/img/scenes/temple_techno.jpg',
+        1, 8
+    ),
+    (
+        'Festival Headliner',
+        'Le set incontournable de la soirée, mêlant les plus grands hits et des exclusivités.',
+        'assets/img/scenes/main_stage_set.jpg',
+        1, 8
+    ),
+    (
+        'B2B Surprise',
+        'Un B2B surprise avec un invité mystère pour une fin de soirée explosive.',
+        'assets/img/scenes/main_stage_set.jpg',
+        4, 8
     );
 
 -- --------------------------------------------

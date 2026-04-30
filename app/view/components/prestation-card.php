@@ -12,9 +12,11 @@ function afficherCartePrestation(int $id, string $nom, string $categorie, string
                 <span class="category-tag"><?php echo htmlspecialchars($categorie); ?></span>
                 <h2><?php echo htmlspecialchars($nom); ?></h2>
                 <span class="artiste-name">par <?php echo htmlspecialchars($artiste); ?></span>
+                <?php if ($heure !== 'Non programmée'): ?>
                 <div class="badge-programmation">
                     <span class="heure"><?php echo htmlspecialchars($heure); ?></span> — <span class="scene"><?php echo htmlspecialchars($scene); ?></span>
                 </div>
+                <?php endif; ?>
             </div>
         </article>
     </a>

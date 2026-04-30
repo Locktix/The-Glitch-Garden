@@ -17,7 +17,7 @@ try {
 
 $erreur = $erreur ?: (isset($_GET['erreur']) ? htmlspecialchars($_GET['erreur']) : '');
 
-// Récupérer les artistes depuis la BDD pour le select
+// Récupérer les artistes
 $artistes = [];
 try {
     $pdo = Database::getPDO();
@@ -34,11 +34,11 @@ $artisteFiltre = isset($_GET['artiste'])   ? (int)$_GET['artiste']       : 0;
 $catFiltre     = isset($_GET['categorie']) ? trim($_GET['categorie'])     : '';
 $programmeeOnly = isset($_GET['programmed']);
 
-// Filtrer la liste avec les critères
+
 $listeFiltree = [];
 foreach ($listePrestations as $prestation) {
 
-    // Filtre mot-clé (cherche dans le titre ET la description)
+    // Filtre mot-clé
     if ($search !== '' && stripos($prestation->getTitre(), $search) === false && stripos($prestation->getDescription(), $search) === false) {
         continue;
     }

@@ -5,9 +5,7 @@
 CREATE DATABASE IF NOT EXISTS glitch_garden;
 USE glitch_garden;
 
--- --------------------------------------------
--- Tables sans dépendances en premier
--- --------------------------------------------
+
 
 CREATE TABLE categories (
     id    INT AUTO_INCREMENT PRIMARY KEY,
@@ -31,9 +29,8 @@ CREATE TABLE utilisateurs (
     est_organisateur BOOLEAN NOT NULL DEFAULT FALSE
 );
 
--- --------------------------------------------
--- Tables avec dépendances
--- --------------------------------------------
+
+
 
 CREATE TABLE prestations (
     id           INT AUTO_INCREMENT PRIMARY KEY,

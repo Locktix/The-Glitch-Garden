@@ -52,20 +52,22 @@ include 'app/view/header.php';
     <p class="artist-bio"><?php echo htmlspecialchars($artiste->getBio()); ?></p>
 </section>
 
-<?php $performances = Prestation::getByArtisteId($artiste->getId()); ?>
-<?php if (!empty($performances)): ?>
+<?php $prestations = Prestation::getByArtisteId($artiste->getId()); ?>
+<?php if (!empty($prestations)): ?>
 <section class="artiste-programmation">
-    <h2>Prochaines Performances</h2>
+    <h2>Ses Prestations</h2>
     <div class="programmation-list">
-        <?php foreach ($performances as $i => $perf): ?>
+        <?php foreach ($prestations as $i => $perf): ?>
             <a href="fiche-prestation.php?id=<?php echo $perf->getId(); ?>" class="prestation-card-link">
                 <article class="programmation-detail-card">
-                    <img src="<?php echo htmlspecialchars($perf->getImage()); ?>" alt="Vue de <?php echo htmlspecialchars($perf->getScene()); ?> pour le set <?php echo htmlspecialchars($perf->getTitre()); ?>" class="programmation-img">
-                    <h3>Set <?php echo $i + 1; ?> : <?php echo htmlspecialchars($perf->getTitre()); ?></h3>
+                    <img src="<?php echo htmlspecialchars($perf->getImage()); ?>" alt="<?php echo htmlspecialchars($perf->getTitre()); ?>" class="programmation-img">
+                    <h3><?php echo htmlspecialchars($perf->getTitre()); ?></h3>
+                    <?php if ($perf->getHoraire() !== 'Non programmée'): ?>
                     <div class="detail-info">
                         <span class="time"><?php echo htmlspecialchars($perf->getHoraire()); ?></span>
                         <span class="stage"><?php echo htmlspecialchars($perf->getScene()); ?></span>
                     </div>
+                    <?php endif; ?>
                 </article>
             </a>
         <?php endforeach; ?>
