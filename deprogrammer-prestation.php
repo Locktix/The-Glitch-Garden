@@ -1,19 +1,22 @@
 <?php
+require_once 'app/model/prestation.php';
 require_once 'app/database/database.php';
-use App\Database\Database;
 
-$pdo = Database::getPDO();
+use app\model\Prestation;
+use App\Database\Database;
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
+$pdo = Database::getPDO();
 $req = $pdo->prepare("
-    SELECT pr.id, p.titre, TIME_FORMAT(pr.heure_debut, '%Hh%i') AS heure, s.nom AS scene
+    SELECT pr.id, p.id AS prestation_id, p.titre, TIME_FORMAT(pr.heure_debut, '%Hh%i') AS heure, s.nom AS scene
     FROM programmation pr
     JOIN prestations p ON p.id = pr.prestation_id
     JOIN scenes s      ON s.id = pr.scene_id
     WHERE pr.id = :id
 ");
-$req->execute([':id' => $id]);
+$req->bindValue(':id', $id, PDO::PARAM_INT);
+$req->execute();
 $creneau = $req->fetch(PDO::FETCH_ASSOC);
 
 if (!$creneau) {
@@ -22,8 +25,8 @@ if (!$creneau) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $del = $pdo->prepare("DELETE FROM programmation WHERE id = :id");
-    $del->execute([':id' => $id]);
+    $prestation = Prestation::getById((int)$creneau['prestation_id']);
+    $prestation->unplan($id);
     header('Location: dashboard-organisateur.php?succes=' . urlencode('Prestation déprogrammée avec succès.'));
     exit;
 }

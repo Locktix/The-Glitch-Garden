@@ -1,23 +1,21 @@
 <?php
-require_once 'app/database/database.php';
-use App\Database\Database;
+require_once 'app/model/utilisateur.php';
+require_once 'app/model/programmation.php';
 
-$pdo     = Database::getPDO();
-$erreurs = [];
-$succes  = '';
+use app\model\Utilisateur;
+use app\model\Programmation;
 
+$erreurs   = [];
+$succes    = '';
 $artisteId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-$req = $pdo->prepare("SELECT * FROM utilisateurs WHERE id = :id AND est_organisateur = FALSE");
-$req->execute([':id' => $artisteId]);
-$artiste = $req->fetch(PDO::FETCH_ASSOC);
+$artiste = Utilisateur::getByIdArtiste($artisteId);
 
 if (!$artiste) {
     header('Location: gerer-artistes.php');
     exit;
 }
 
-// Traitement du formulaire profil
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom        = trim($_POST['nom'] ?? '');
     $prenom     = trim($_POST['prenom'] ?? '');
@@ -34,12 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erreurs['email'] = "L'e-mail est obligatoire.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $erreurs['email'] = "Format d'e-mail invalide.";
-    } else {
-        $check = $pdo->prepare("SELECT id FROM utilisateurs WHERE email = :email AND id != :id");
-        $check->execute([':email' => $email, ':id' => $artisteId]);
-        if ($check->fetch()) {
-            $erreurs['email'] = "Cet e-mail est déjà utilisé.";
-        }
+    } elseif (Utilisateur::emailExiste($email, $artisteId)) {
+        $erreurs['email'] = "Cet e-mail est déjà utilisé.";
     }
 
     if ($mdp !== '' && $mdp !== $mdpConfirm) {
@@ -47,46 +41,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($erreurs)) {
-        if ($mdp !== '') {
-            $upd = $pdo->prepare("UPDATE utilisateurs SET nom = :nom, prenom = :prenom, email = :email, description = :desc, nom_artiste = :na, mot_de_passe = :mdp WHERE id = :id");
-            $upd->execute([':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':desc' => $description, ':na' => $nomArtiste ?: null, ':mdp' => $mdp, ':id' => $artisteId]);
-        } else {
-            $upd = $pdo->prepare("UPDATE utilisateurs SET nom = :nom, prenom = :prenom, email = :email, description = :desc, nom_artiste = :na WHERE id = :id");
-            $upd->execute([':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':desc' => $description, ':na' => $nomArtiste ?: null, ':id' => $artisteId]);
-        }
+        $artiste->setNom($nom);
+        $artiste->setPrenom($prenom);
+        $artiste->setEmail($email);
+        $artiste->setDescription($description);
+        $artiste->setNomArtiste($nomArtiste);
+        $artiste->update($mdp !== '' ? $mdp : null);
         $succes = "Profil mis à jour avec succès.";
-        $req->execute([':id' => $artisteId]);
-        $artiste = $req->fetch(PDO::FETCH_ASSOC);
+        $artiste = Utilisateur::getByIdArtiste($artisteId);
     } else {
-        $artiste['nom']         = $nom;
-        $artiste['prenom']      = $prenom;
-        $artiste['email']       = $email;
-        $artiste['description'] = $description;
-        $artiste['nom_artiste'] = $nomArtiste;
+        $artiste->setNom($nom);
+        $artiste->setPrenom($prenom);
+        $artiste->setEmail($email);
+        $artiste->setDescription($description);
+        $artiste->setNomArtiste($nomArtiste);
     }
 }
 
-// Récupérer le catalogue de l'artiste
-$reqCatalogue = $pdo->prepare("
-    SELECT p.id, p.titre, c.nom AS categorie,
-           CASE WHEN pr.id IS NOT NULL THEN 1 ELSE 0 END AS est_programmee
-    FROM prestations p
-    JOIN categories c ON c.id = p.categorie_id
-    LEFT JOIN programmation pr ON pr.prestation_id = p.id
-    WHERE p.artiste_id = :id
-    ORDER BY p.titre ASC
-");
-$reqCatalogue->execute([':id' => $artisteId]);
-$prestations = $reqCatalogue->fetchAll(PDO::FETCH_ASSOC);
-
-$succes = $succes ?: (isset($_GET['succes']) ? $_GET['succes'] : '');
+$prestations = Programmation::getCatalogueArtiste($artisteId);
+$succes      = $succes ?: (isset($_GET['succes']) ? $_GET['succes'] : '');
 
 $page = 'gerer-artiste';
 include 'app/view/header.php';
 ?>
 
 <a href="gerer-artistes.php" class="back-link">&larr; Retour à la liste des artistes</a>
-<h1 class="page-title">Gérer : <?php echo htmlspecialchars($artiste['nom_artiste'] ?? $artiste['prenom'] . ' ' . $artiste['nom']); ?></h1>
+<h1 class="page-title">Gérer : <?php echo htmlspecialchars($artiste->getNomArtiste() ?: $artiste->getPrenom() . ' ' . $artiste->getNom()); ?></h1>
 
 <?php if ($succes): ?>
     <div class="succes-message"><?php echo htmlspecialchars($succes); ?></div>
@@ -99,30 +79,30 @@ include 'app/view/header.php';
 
         <div class="form-group">
             <label for="prenom">Prénom *</label>
-            <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($artiste['prenom']); ?>" <?php echo isset($erreurs['prenom']) ? 'class="input-error"' : ''; ?>>
+            <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($artiste->getPrenom()); ?>" <?php echo isset($erreurs['prenom']) ? 'class="input-error"' : ''; ?>>
             <?php if (isset($erreurs['prenom'])): ?><span class="field-error"><?php echo $erreurs['prenom']; ?></span><?php endif; ?>
         </div>
 
         <div class="form-group">
             <label for="nom">Nom *</label>
-            <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($artiste['nom']); ?>" <?php echo isset($erreurs['nom']) ? 'class="input-error"' : ''; ?>>
+            <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($artiste->getNom()); ?>" <?php echo isset($erreurs['nom']) ? 'class="input-error"' : ''; ?>>
             <?php if (isset($erreurs['nom'])): ?><span class="field-error"><?php echo $erreurs['nom']; ?></span><?php endif; ?>
         </div>
 
         <div class="form-group">
             <label for="nom_artiste">Nom d'artiste</label>
-            <input type="text" id="nom_artiste" name="nom_artiste" value="<?php echo htmlspecialchars($artiste['nom_artiste'] ?? ''); ?>">
+            <input type="text" id="nom_artiste" name="nom_artiste" value="<?php echo htmlspecialchars($artiste->getNomArtiste()); ?>">
         </div>
 
         <div class="form-group">
             <label for="email">E-mail *</label>
-            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($artiste['email']); ?>" <?php echo isset($erreurs['email']) ? 'class="input-error"' : ''; ?>>
+            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($artiste->getEmail()); ?>" <?php echo isset($erreurs['email']) ? 'class="input-error"' : ''; ?>>
             <?php if (isset($erreurs['email'])): ?><span class="field-error"><?php echo $erreurs['email']; ?></span><?php endif; ?>
         </div>
 
         <div class="form-group">
             <label for="description">Biographie</label>
-            <textarea id="description" name="description"><?php echo htmlspecialchars($artiste['description'] ?? ''); ?></textarea>
+            <textarea id="description" name="description"><?php echo htmlspecialchars($artiste->getDescription()); ?></textarea>
         </div>
 
         <h2 class="section-title">Changer de mot de passe</h2>

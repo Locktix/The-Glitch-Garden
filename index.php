@@ -1,43 +1,24 @@
 <?php
-require_once 'app/database/database.php';
-use App\Database\Database;
+require_once 'app/model/programmation.php';
 
-// Récupérer le programme depuis la BDD
+use app\model\Programmation;
+
 $programme = [];
-$heures = [];
-$scenes = ['Scène Principale', 'Temple Techno', 'Jardin Chillout'];
-$erreur = '';
+$heures    = [];
+$scenes    = ['Scène Principale', 'Temple Techno', 'Jardin Chillout'];
+$erreur    = '';
 
 try {
-    $pdo = Database::getPDO();
-    $req = $pdo->prepare("
-        SELECT
-            TIME_FORMAT(pr.heure_debut, '%Hh%i') AS heure,
-            s.nom                                AS scene,
-            p.id                                 AS prestation_id,
-            p.titre,
-            u.nom_artiste                        AS artiste
-        FROM programmation pr
-        JOIN prestations p  ON p.id = pr.prestation_id
-        JOIN scenes s       ON s.id = pr.scene_id
-        JOIN utilisateurs u ON u.id = p.artiste_id
-        ORDER BY pr.heure_debut ASC
-    ");
-    $req->execute();
-    $rows = $req->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($rows as $row) {
+    foreach (Programmation::getGrille() as $row) {
         $heure = $row['heure'];
         $scene = $row['scene'];
-
         if (!in_array($heure, $heures)) {
             $heures[] = $heure;
         }
-
         $programme[$heure][$scene] = [
             'id'      => $row['prestation_id'],
             'titre'   => $row['titre'],
-            'artiste' => $row['artiste']
+            'artiste' => $row['artiste'],
         ];
     }
 } catch (PDOException $e) {

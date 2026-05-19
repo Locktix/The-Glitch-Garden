@@ -1,25 +1,14 @@
 <?php
-require_once 'app/database/database.php';
-use App\Database\Database;
+require_once 'app/model/utilisateur.php';
+require_once 'app/model/programmation.php';
+
+use app\model\Utilisateur;
+use app\model\Programmation;
 
 $ARTISTE_ID = 2; // Cyber pulse — utilisateur fixe en dur
 
-$pdo = Database::getPDO();
-
-$req = $pdo->prepare("SELECT * FROM utilisateurs WHERE id = :id AND est_organisateur = FALSE");
-$req->execute([':id' => $ARTISTE_ID]);
-$artiste = $req->fetch(PDO::FETCH_ASSOC);
-
-$reqProg = $pdo->prepare("
-    SELECT p.id, p.titre, TIME_FORMAT(pr.heure_debut, '%Hh%i') AS heure, s.nom AS scene
-    FROM prestations p
-    JOIN programmation pr ON pr.prestation_id = p.id
-    JOIN scenes s         ON s.id = pr.scene_id
-    WHERE p.artiste_id = :id
-    ORDER BY pr.heure_debut ASC
-");
-$reqProg->execute([':id' => $ARTISTE_ID]);
-$performances = $reqProg->fetchAll(PDO::FETCH_ASSOC);
+$artiste      = Utilisateur::getByIdArtiste($ARTISTE_ID);
+$performances = Programmation::getByArtisteId($ARTISTE_ID);
 
 $page = 'dashboard-artiste';
 include 'app/view/header.php';
@@ -28,12 +17,9 @@ include 'app/view/header.php';
 <h1 class="page-title">Dashboard Artiste</h1>
 
 <div class="artist-profile-header">
-    <?php if (!empty($artiste['photo'])): ?>
-        <img src="<?php echo htmlspecialchars($artiste['photo']); ?>" alt="Photo de <?php echo htmlspecialchars($artiste['nom_artiste']); ?>" class="artist-photo">
-    <?php endif; ?>
     <div class="artist-presentation">
-        <span class="artist-real-name"><?php echo htmlspecialchars($artiste['prenom'] . ' ' . $artiste['nom']); ?></span>
-        <h2><?php echo htmlspecialchars($artiste['nom_artiste'] ?? ''); ?></h2>
+        <span class="artist-real-name"><?php echo htmlspecialchars($artiste->getPrenom() . ' ' . $artiste->getNom()); ?></span>
+        <h2><?php echo htmlspecialchars($artiste->getNomArtiste()); ?></h2>
     </div>
 </div>
 

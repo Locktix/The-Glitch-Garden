@@ -1,16 +1,14 @@
 <?php
-require_once 'app/database/database.php';
-use App\Database\Database;
+require_once 'app/model/prestation.php';
+require_once 'app/model/categorie.php';
+
+use app\model\Prestation;
+use app\model\Categorie;
 
 $ARTISTE_ID = 2; // Cyber pulse — utilisateur fixe en dur
 
-$pdo     = Database::getPDO();
-$erreurs = [];
-
-$reqCat = $pdo->prepare("SELECT id, nom FROM categories ORDER BY nom");
-$reqCat->execute();
-$categories = $reqCat->fetchAll(PDO::FETCH_ASSOC);
-
+$erreurs     = [];
+$categories  = Categorie::getAll();
 $titre       = '';
 $description = '';
 $categorieId = 0;
@@ -20,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = trim($_POST['description'] ?? '');
     $categorieId = (int)($_POST['categorie_id'] ?? 0);
 
-    if ($titre === '')    $erreurs['titre']       = 'Le titre est obligatoire.';
+    if ($titre === '')      $erreurs['titre']       = 'Le titre est obligatoire.';
     if ($categorieId === 0) $erreurs['categorie_id'] = 'La catégorie est obligatoire.';
 
     if (empty($erreurs)) {
-        $req = $pdo->prepare("INSERT INTO prestations (titre, description, categorie_id, artiste_id) VALUES (:titre, :desc, :cat, :artiste)");
-        $req->execute([':titre' => $titre, ':desc' => $description, ':cat' => $categorieId, ':artiste' => $ARTISTE_ID]);
+        $prestation = new Prestation(null, $titre, $description, '', '', $ARTISTE_ID, '', '', '', $categorieId);
+        $prestation->create();
         header('Location: catalogue-artiste.php?succes=' . urlencode('Prestation ajoutée avec succès.'));
         exit;
     }
@@ -56,8 +54,8 @@ include 'app/view/header.php';
         <select id="categorie_id" name="categorie_id" <?php echo isset($erreurs['categorie_id']) ? 'class="input-error"' : ''; ?>>
             <option value="">-- Choisir une catégorie --</option>
             <?php foreach ($categories as $cat): ?>
-                <option value="<?php echo $cat['id']; ?>" <?php echo ($categorieId === (int)$cat['id']) ? 'selected' : ''; ?>>
-                    <?php echo htmlspecialchars($cat['nom']); ?>
+                <option value="<?php echo $cat->getId(); ?>" <?php echo ($categorieId === $cat->getId()) ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($cat->getNom()); ?>
                 </option>
             <?php endforeach; ?>
         </select>

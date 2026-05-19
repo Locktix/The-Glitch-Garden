@@ -13,34 +13,124 @@ class Prestation
     private string $titre;
     private string $description;
     private string $categorie;
+    private int $categorieId;
     private string $artiste;
     private int $artisteId;
     private string $horaire;
     private string $scene;
     private string $image;
 
-    public function __construct(int $id, string $titre, string $description, string $categorie, string $artiste, int $artisteId, string $horaire, string $scene, string $image)
-    {
-        $this->id = $id;
-        $this->titre = $titre;
+    public function __construct(
+        ?int $id = null,
+        string $titre = '',
+        string $description = '',
+        string $categorie = '',
+        string $artiste = '',
+        int $artisteId = 0,
+        string $horaire = '',
+        string $scene = '',
+        string $image = '',
+        int $categorieId = 0
+    ) {
+        $this->id          = $id ?? 0;
+        $this->titre       = $titre;
         $this->description = $description;
-        $this->categorie = $categorie;
-        $this->artiste = $artiste;
-        $this->artisteId = $artisteId;
-        $this->horaire = $horaire;
-        $this->scene = $scene;
-        $this->image = $image;
+        $this->categorie   = $categorie;
+        $this->categorieId = $categorieId;
+        $this->artiste     = $artiste;
+        $this->artisteId   = $artisteId;
+        $this->horaire     = $horaire;
+        $this->scene       = $scene;
+        $this->image       = $image;
     }
 
-    public function getId(): int { return $this->id; }
-    public function getTitre(): string { return $this->titre; }
+    public function getId(): int          { return $this->id; }
+    public function getTitre(): string    { return $this->titre; }
     public function getDescription(): string { return $this->description; }
-    public function getCategorie(): string { return $this->categorie; }
-    public function getArtiste(): string { return $this->artiste; }
-    public function getArtisteId(): int { return $this->artisteId; }
-    public function getHoraire(): string { return $this->horaire; }
-    public function getScene(): string { return $this->scene; }
-    public function getImage(): string { return $this->image; }
+    public function getCategorie(): string    { return $this->categorie; }
+    public function getCategorieId(): int     { return $this->categorieId; }
+    public function getArtiste(): string  { return $this->artiste; }
+    public function getArtisteId(): int   { return $this->artisteId; }
+    public function getHoraire(): string  { return $this->horaire; }
+    public function getScene(): string    { return $this->scene; }
+    public function getImage(): string    { return $this->image; }
+
+    public function setTitre(string $titre): void          { $this->titre = $titre; }
+    public function setDescription(string $desc): void     { $this->description = $desc; }
+    public function setCategorieId(int $categorieId): void { $this->categorieId = $categorieId; }
+
+    public function create(): int
+    {
+        $pdo = Database::getPDO();
+        $req = $pdo->prepare("
+            INSERT INTO prestations (titre, description, categorie_id, artiste_id)
+            VALUES (:titre, :description, :categorie_id, :artiste_id)
+        ");
+        $req->bindValue(':titre',        $this->titre,      PDO::PARAM_STR);
+        $req->bindValue(':description',  $this->description, PDO::PARAM_STR);
+        $req->bindValue(':categorie_id', $this->categorieId, PDO::PARAM_INT);
+        $req->bindValue(':artiste_id',   $this->artisteId,   PDO::PARAM_INT);
+        $req->execute();
+        $this->id = (int) $pdo->lastInsertId();
+        return $this->id;
+    }
+
+    public function update(): bool
+    {
+        $pdo = Database::getPDO();
+        $req = $pdo->prepare("
+            UPDATE prestations
+            SET titre = :titre, description = :description, categorie_id = :categorie_id
+            WHERE id = :id
+        ");
+        $req->bindValue(':id',           $this->id,          PDO::PARAM_INT);
+        $req->bindValue(':titre',        $this->titre,       PDO::PARAM_STR);
+        $req->bindValue(':description',  $this->description, PDO::PARAM_STR);
+        $req->bindValue(':categorie_id', $this->categorieId, PDO::PARAM_INT);
+        $req->execute();
+        return $req->rowCount() > 0;
+    }
+
+    public function delete(): bool
+    {
+        $pdo = Database::getPDO();
+        $req = $pdo->prepare("DELETE FROM prestations WHERE id = :id");
+        $req->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->rowCount() > 0;
+    }
+
+    public function toPlan(int $sceneId, string $heureDebut): bool
+    {
+        $pdo = Database::getPDO();
+        $req = $pdo->prepare("
+            INSERT INTO programmation (prestation_id, scene_id, heure_debut)
+            VALUES (:prestation_id, :scene_id, :heure_debut)
+        ");
+        $req->bindValue(':prestation_id', $this->id,    PDO::PARAM_INT);
+        $req->bindValue(':scene_id',      $sceneId,     PDO::PARAM_INT);
+        $req->bindValue(':heure_debut',   $heureDebut,  PDO::PARAM_STR);
+        $req->execute();
+        return $req->rowCount() > 0;
+    }
+
+    public function unplan(int $programmationId): bool
+    {
+        $pdo = Database::getPDO();
+        $req = $pdo->prepare("DELETE FROM programmation WHERE id = :id");
+        $req->bindValue(':id', $programmationId, PDO::PARAM_INT);
+        $req->execute();
+        return $req->rowCount() > 0;
+    }
+
+    public function isProgrammed(): bool
+    {
+        $pdo = Database::getPDO();
+        $req = $pdo->prepare("SELECT id FROM programmation WHERE prestation_id = :id");
+        $req->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $req->execute();
+        return (bool) $req->fetch();
+    }
 
     public static function getAll(): array
     {
@@ -105,7 +195,8 @@ class Prestation
             LEFT JOIN scenes s  ON s.id = pr.scene_id
             WHERE p.id = :id
         ");
-        $req->execute([':id' => $id]);
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
         $row = $req->fetch(PDO::FETCH_ASSOC);
 
         if (!$row) return null;
@@ -145,7 +236,8 @@ class Prestation
             WHERE p.artiste_id = :id
             ORDER BY pr.heure_debut ASC
         ");
-        $req->execute([':id' => $artisteId]);
+        $req->bindValue(':id', $artisteId, PDO::PARAM_INT);
+        $req->execute();
         $rows = $req->fetchAll(PDO::FETCH_ASSOC);
 
         $prestations = [];

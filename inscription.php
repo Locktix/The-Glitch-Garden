@@ -1,14 +1,15 @@
 <?php
-require_once 'app/database/database.php';
-use App\Database\Database;
+require_once 'app/model/utilisateur.php';
 
-$page     = 'inscription';
-$erreurs  = [];
-$lastname = '';
-$firstname = '';
+use app\model\Utilisateur;
+
+$page       = 'inscription';
+$erreurs    = [];
+$lastname   = '';
+$firstname  = '';
 $artistname = '';
-$bio      = '';
-$email    = '';
+$bio        = '';
+$email      = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastname   = trim($_POST['lastname']   ?? '');
@@ -23,18 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($firstname === '')  $erreurs['firstname']  = 'Le prénom est obligatoire.';
     if ($artistname === '') $erreurs['artistname'] = "Le nom d'artiste est obligatoire.";
     if ($bio === '')        $erreurs['bio']        = 'La biographie est obligatoire.';
+
     if ($email === '') {
         $erreurs['email'] = "L'e-mail est obligatoire.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $erreurs['email'] = "Format d'e-mail invalide.";
-    } else {
-        $pdo   = Database::getPDO();
-        $check = $pdo->prepare("SELECT id FROM utilisateurs WHERE email = :email");
-        $check->execute([':email' => $email]);
-        if ($check->fetch()) {
-            $erreurs['email'] = "Cet e-mail est déjà utilisé.";
-        }
+    } elseif (Utilisateur::emailExiste($email)) {
+        $erreurs['email'] = "Cet e-mail est déjà utilisé.";
     }
+
     if ($password === '') {
         $erreurs['password'] = 'Le mot de passe est obligatoire.';
     } elseif ($password !== $confirm) {
@@ -42,16 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($erreurs)) {
-        $pdo = Database::getPDO();
-        $req = $pdo->prepare("INSERT INTO utilisateurs (nom, prenom, nom_artiste, description, email, mot_de_passe, est_organisateur) VALUES (:nom, :prenom, :na, :bio, :email, :mdp, FALSE)");
-        $req->execute([
-            ':nom'    => $lastname,
-            ':prenom' => $firstname,
-            ':na'     => $artistname,
-            ':bio'    => $bio,
-            ':email'  => $email,
-            ':mdp'    => $password,
-        ]);
+        $utilisateur = new Utilisateur(null, $lastname, $firstname, $email, $bio, $artistname);
+        $utilisateur->create($password);
         header('Location: connexion.php');
         exit;
     }

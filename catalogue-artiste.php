@@ -1,24 +1,12 @@
 <?php
-require_once 'app/database/database.php';
-use App\Database\Database;
+require_once 'app/model/programmation.php';
+
+use app\model\Programmation;
 
 $ARTISTE_ID = 2; // Cyber pulse — utilisateur fixe en dur
 
-$pdo = Database::getPDO();
-
-$req = $pdo->prepare("
-    SELECT p.id, p.titre, c.nom AS categorie,
-           CASE WHEN pr.id IS NOT NULL THEN 1 ELSE 0 END AS est_programmee
-    FROM prestations p
-    JOIN categories c ON c.id = p.categorie_id
-    LEFT JOIN programmation pr ON pr.prestation_id = p.id
-    WHERE p.artiste_id = :id
-    ORDER BY p.titre ASC
-");
-$req->execute([':id' => $ARTISTE_ID]);
-$prestations = $req->fetchAll(PDO::FETCH_ASSOC);
-
-$succes = isset($_GET['succes']) ? $_GET['succes'] : '';
+$prestations = Programmation::getCatalogueArtiste($ARTISTE_ID);
+$succes      = isset($_GET['succes']) ? $_GET['succes'] : '';
 
 $page = 'catalogue-artiste';
 include 'app/view/header.php';

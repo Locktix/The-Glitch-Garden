@@ -1,19 +1,16 @@
 <?php
-require_once 'app/database/database.php';
-use App\Database\Database;
+require_once 'app/model/utilisateur.php';
 
-// Utilisateur fixe en dur
+use app\model\Utilisateur;
+
 $type   = isset($_GET['type']) ? $_GET['type'] : 'artiste';
 $userId = ($type === 'organisateur') ? 1 : 2;
 $retour = ($type === 'organisateur') ? 'dashboard-organisateur.php' : 'dashboard-artiste.php';
 
-$pdo     = Database::getPDO();
 $erreurs = [];
 $succes  = '';
 
-$req = $pdo->prepare("SELECT * FROM utilisateurs WHERE id = :id");
-$req->execute([':id' => $userId]);
-$user = $req->fetch(PDO::FETCH_ASSOC);
+$user = Utilisateur::getById($userId);
 
 if (!$user) {
     header('Location: index.php');
@@ -36,12 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erreurs['email'] = "L'e-mail est obligatoire.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $erreurs['email'] = "Format d'e-mail invalide.";
-    } else {
-        $check = $pdo->prepare("SELECT id FROM utilisateurs WHERE email = :email AND id != :id");
-        $check->execute([':email' => $email, ':id' => $userId]);
-        if ($check->fetch()) {
-            $erreurs['email'] = "Cet e-mail est déjà utilisé.";
-        }
+    } elseif (Utilisateur::emailExiste($email, $userId)) {
+        $erreurs['email'] = "Cet e-mail est déjà utilisé.";
     }
 
     if ($mdp !== '' && $mdp !== $mdpConfirm) {
@@ -49,22 +42,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($erreurs)) {
-        if ($mdp !== '') {
-            $upd = $pdo->prepare("UPDATE utilisateurs SET nom = :nom, prenom = :prenom, email = :email, description = :desc, nom_artiste = :na, mot_de_passe = :mdp WHERE id = :id");
-            $upd->execute([':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':desc' => $description, ':na' => $nomArtiste ?: null, ':mdp' => $mdp, ':id' => $userId]);
-        } else {
-            $upd = $pdo->prepare("UPDATE utilisateurs SET nom = :nom, prenom = :prenom, email = :email, description = :desc, nom_artiste = :na WHERE id = :id");
-            $upd->execute([':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':desc' => $description, ':na' => $nomArtiste ?: null, ':id' => $userId]);
-        }
+        $user->setNom($nom);
+        $user->setPrenom($prenom);
+        $user->setEmail($email);
+        $user->setDescription($description);
+        $user->setNomArtiste($nomArtiste);
+        $user->update($mdp !== '' ? $mdp : null);
         $succes = "Profil mis à jour avec succès.";
-        $req->execute([':id' => $userId]);
-        $user = $req->fetch(PDO::FETCH_ASSOC);
+        $user = Utilisateur::getById($userId);
     } else {
-        $user['nom']         = $nom;
-        $user['prenom']      = $prenom;
-        $user['email']       = $email;
-        $user['description'] = $description;
-        $user['nom_artiste'] = $nomArtiste;
+        $user->setNom($nom);
+        $user->setPrenom($prenom);
+        $user->setEmail($email);
+        $user->setDescription($description);
+        $user->setNomArtiste($nomArtiste);
     }
 }
 
@@ -83,32 +74,32 @@ include 'app/view/header.php';
 
     <div class="form-group">
         <label for="prenom">Prénom *</label>
-        <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($user['prenom']); ?>" <?php echo isset($erreurs['prenom']) ? 'class="input-error"' : ''; ?>>
+        <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($user->getPrenom()); ?>" <?php echo isset($erreurs['prenom']) ? 'class="input-error"' : ''; ?>>
         <?php if (isset($erreurs['prenom'])): ?><span class="field-error"><?php echo $erreurs['prenom']; ?></span><?php endif; ?>
     </div>
 
     <div class="form-group">
         <label for="nom">Nom *</label>
-        <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($user['nom']); ?>" <?php echo isset($erreurs['nom']) ? 'class="input-error"' : ''; ?>>
+        <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($user->getNom()); ?>" <?php echo isset($erreurs['nom']) ? 'class="input-error"' : ''; ?>>
         <?php if (isset($erreurs['nom'])): ?><span class="field-error"><?php echo $erreurs['nom']; ?></span><?php endif; ?>
     </div>
 
     <?php if ($type === 'artiste'): ?>
     <div class="form-group">
         <label for="nom_artiste">Nom d'artiste</label>
-        <input type="text" id="nom_artiste" name="nom_artiste" value="<?php echo htmlspecialchars($user['nom_artiste'] ?? ''); ?>">
+        <input type="text" id="nom_artiste" name="nom_artiste" value="<?php echo htmlspecialchars($user->getNomArtiste()); ?>">
     </div>
     <?php endif; ?>
 
     <div class="form-group">
         <label for="email">E-mail *</label>
-        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" <?php echo isset($erreurs['email']) ? 'class="input-error"' : ''; ?>>
+        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user->getEmail()); ?>" <?php echo isset($erreurs['email']) ? 'class="input-error"' : ''; ?>>
         <?php if (isset($erreurs['email'])): ?><span class="field-error"><?php echo $erreurs['email']; ?></span><?php endif; ?>
     </div>
 
     <div class="form-group">
         <label for="description">Biographie</label>
-        <textarea id="description" name="description"><?php echo htmlspecialchars($user['description'] ?? ''); ?></textarea>
+        <textarea id="description" name="description"><?php echo htmlspecialchars($user->getDescription()); ?></textarea>
     </div>
 
     <h2 class="section-title">Changer de mot de passe</h2>

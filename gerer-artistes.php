@@ -1,12 +1,9 @@
 <?php
-require_once 'app/database/database.php';
-use App\Database\Database;
+require_once 'app/model/utilisateur.php';
 
-$pdo = Database::getPDO();
+use app\model\Utilisateur;
 
-$req = $pdo->prepare("SELECT id, nom_artiste, prenom, nom FROM utilisateurs WHERE est_organisateur = FALSE ORDER BY nom_artiste");
-$req->execute();
-$artistes = $req->fetchAll(PDO::FETCH_ASSOC);
+$artistes = Utilisateur::getAll();
 
 $page = 'gerer-artistes';
 include 'app/view/header.php';
@@ -29,9 +26,9 @@ include 'app/view/header.php';
         <tbody>
             <?php foreach ($artistes as $artiste): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($artiste['nom_artiste'] ?? '-'); ?></td>
-                    <td><?php echo htmlspecialchars($artiste['prenom'] . ' ' . $artiste['nom']); ?></td>
-                    <td><a href="gerer-artiste.php?id=<?php echo $artiste['id']; ?>" class="btn">Gérer</a></td>
+                    <td><?php echo htmlspecialchars($artiste->getNomArtiste() ?: '-'); ?></td>
+                    <td><?php echo htmlspecialchars($artiste->getPrenom() . ' ' . $artiste->getNom()); ?></td>
+                    <td><a href="gerer-artiste.php?id=<?php echo $artiste->getId(); ?>" class="btn">Gérer</a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

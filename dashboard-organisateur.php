@@ -1,32 +1,13 @@
 <?php
-require_once 'app/database/database.php';
-use App\Database\Database;
+require_once 'app/model/programmation.php';
 
-$ORGANISATEUR_ID = 1; // Alex Durand — utilisateur fixe en dur
+use app\model\Programmation;
 
-$pdo    = Database::getPDO();
-$scenes = ['Scène Principale', 'Temple Techno', 'Jardin Chillout'];
+$scenes    = ['Scène Principale', 'Temple Techno', 'Jardin Chillout'];
 $programme = [];
 $heures    = [];
 
-$req = $pdo->prepare("
-    SELECT
-        pr.id                                AS programmation_id,
-        TIME_FORMAT(pr.heure_debut, '%Hh%i') AS heure,
-        s.nom                                AS scene,
-        p.id                                 AS prestation_id,
-        p.titre,
-        u.nom_artiste                        AS artiste
-    FROM programmation pr
-    JOIN prestations p  ON p.id = pr.prestation_id
-    JOIN scenes s       ON s.id = pr.scene_id
-    JOIN utilisateurs u ON u.id = p.artiste_id
-    ORDER BY pr.heure_debut ASC
-");
-$req->execute();
-$rows = $req->fetchAll(PDO::FETCH_ASSOC);
-
-foreach ($rows as $row) {
+foreach (Programmation::getGrille() as $row) {
     $heure = $row['heure'];
     $scene = $row['scene'];
     if (!in_array($heure, $heures)) {
