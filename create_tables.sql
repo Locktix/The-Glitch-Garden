@@ -29,9 +29,6 @@ CREATE TABLE utilisateurs (
     est_organisateur BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-
-
-
 CREATE TABLE prestations (
     id           INT AUTO_INCREMENT PRIMARY KEY,
     titre        VARCHAR(255) NOT NULL,
